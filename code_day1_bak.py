@@ -2,36 +2,26 @@
 # Author = brauni
 # Date = 2021-12-01
 
-# with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\01\\example.txt", 'r') as f:
+# Part 1
 with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\01\\input.txt", 'r') as f:
-    # input = f.read()
-    # input = input.split("\n")
     input = []
     for line in f.readlines():
         input.append(int(line))
-
-"""
-print(input)
-"""
-
-
-# PART 1
 
 c = 0
 for i in range(1, len(input)):
     if input[i] > input[i-1]:
         c += 1
-solution_1 = c
-print("Part One : " + str(solution_1))
+
+print("Part One : " + str(c))
 
 
-# PART 2
-
+# Part 2
 d = 0
 for i in range(len(input)):
     sum_first = sum(input[i:i+3])
     sum_second = sum(input[i+1:i+4])
     if sum_first < sum_second:
         d += 1
-solution_2 = d
-print("Part Two : " + str(solution_2))
+
+print("Part Two : " + str(d))
