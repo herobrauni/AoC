@@ -1,4 +1,2 @@
-tmp.py
-.gitignore
-.gitattributes
+tmp*.py
 code_day1_bak.py
