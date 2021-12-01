@@ -18,6 +18,7 @@ print(input)
 # PART 1
 
 c = 0
+# loop through input list and check if current number is bigger than last number
 for i in range(1, len(input)):
     if input[i] > input[i-1]:
         c += 1
@@ -28,6 +29,8 @@ print("Part One : " + str(solution_1))
 # PART 2
 
 d = 0
+# loop through input list and check if the sum of current number + next 2 numbers is smaller than the sum of the next 3 numbers
+# sum(1,2,3) < sum(2,3,4)
 for i in range(len(input)):
     sum_first = sum(input[i:i+3])
     sum_second = sum(input[i+1:i+4])
