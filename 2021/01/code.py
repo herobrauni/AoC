@@ -38,3 +38,16 @@ for i in range(len(input)):
         d += 1
 solution_2 = d
 print("Part Two : " + str(solution_2))
+
+
+# One liners from https://www.reddit.com/r/adventofcode/comments/r66vow/2021_day_1_solutions/hmrggq3/
+
+# create a zip in which the first element of input is matched with the second element of input and so on
+# we then iterate through the zip and check if the first element is bigger than the second element
+sum(x < y for x, y in zip(input, input[1:]))
+
+# create a zip in which the first element of input is matched with the third element of input and so on
+# we then iterate through the zip and check if the first element is bigger than the second element
+# this works because for triplets a,b,c and b,c,d, the sum of a,b,c is smaller than the sum of b,c,d if a < b
+# because a and d are the only different numbers
+sum(x < y for x, y in zip(input, input[3:]))
