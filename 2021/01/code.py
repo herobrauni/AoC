@@ -6,9 +6,10 @@
 with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\01\\input.txt", 'r') as f:
     # input = f.read()
     # input = input.split("\n")
-    input = []
-    for line in f.readlines():
-        input.append(int(line))
+    # input = []
+    # for line in f.readlines():
+    #     input.append(int(line))
+    input = [int(line) for line in f.readlines()]
 
 """
 print(input)
@@ -16,7 +17,6 @@ print(input)
 
 
 # PART 1
-
 c = 0
 # loop through input list and check if current number is bigger than last number
 for i in range(1, len(input)):
@@ -27,7 +27,6 @@ print("Part One : " + str(solution_1))
 
 
 # PART 2
-
 d = 0
 # loop through input list and check if the sum of current number + next 2 numbers is smaller than the sum of the next 3 numbers
 # sum(1,2,3) < sum(2,3,4)
