@@ -4,7 +4,6 @@
 
 import re
 
-
 # with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\02\\example.txt", 'r') as f:
 with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\02\\input.txt", 'r') as f:
     input = f.read()
@@ -19,10 +18,11 @@ with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\02\\input.txt", 'r')
 print(input)
 """
 
-
 # PART 1
 depth, horizontal = 0, 0
 
+# loop through all lines and split them into command and value
+# change depth and horizontal by the value according to the command
 for line in input:
     line = line.split(" ")
     command = line[0]
@@ -34,12 +34,13 @@ for line in input:
     elif command == "up":
         depth -= value
 
-# print(depth, horizontal)
 solution_1 = (depth*horizontal)
 
 # PART 2
 depth, horizontal, aim = 0, 0, 0
 
+# same as P1, but depth is only changed for command "forward"
+# up/down are changing new variable aim
 for line in input:
     line = line.split(" ")
     command = line[0]
@@ -48,19 +49,13 @@ for line in input:
         horizontal += value
         depth = depth + (aim * value)
     elif command == "down":
-        # depth += value
         aim += value
     elif command == "up":
-        # depth -= value
         aim -= value
-    # print(depth, horizontal, aim)
 
-
-# print(depth, horizontal, aim)
 solution_2 = (depth*horizontal)
 
-
+# SOLUTIONS
 print("Part One : " + str(solution_1))
-
 
 print("Part Two : " + str(solution_2))
