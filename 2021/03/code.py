@@ -32,11 +32,11 @@ gamma, epsilon = "", ""
 
 # loop through all columns of the input
 for i in range(len(input[0])):
-    # if the sum of all elements (0|1) in the column is bigger than half the number of rows
+    # if the sum of all elements (0|1) in the column is bigger than half the number of rows -> common number is 1
     if ((sum([int(row[i]) for row in input])) > len(input) / 2):
         gamma += "1"
         epsilon += "0"
-    # if the sum of all elements (0|1) in the column is smaller than half the number of rows
+    # if the sum of all elements (0|1) in the column is smaller than half the number of rows -> common number is 0
     else:
         gamma += "0"
         epsilon += "1"
@@ -76,6 +76,8 @@ for i in range(len(temp[0])):
 # convert the remaining element to an integer
 oxygen = int(temp[0], base=2)
 
+
+# Same as oxygen but with the comparison negated
 # use array to store the elements that need removal and remove them at the end of each column run, otherwise it messes with the loop counters
 temp_remove = []
 temp = input.copy()
