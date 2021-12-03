@@ -3,8 +3,8 @@
 # Date = 2021-12-03
 import re
 from collections import Counter
-# with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\25\\example.txt", 'r') as f:
-with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\25\\input.txt", 'r') as f:
+# with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2020\\25\\example.txt", 'r') as f:
+with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2020\\25\\input.txt", 'r') as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
