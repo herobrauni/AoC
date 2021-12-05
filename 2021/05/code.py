@@ -11,28 +11,19 @@ solution_1, solution_2 = 0, 0
 
 # with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\05\\example.txt", 'r') as f:
 with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\05\\input.txt", 'r') as f:
-    input = f.read()
-
+    input = f.read().strip().replace('\n', ',')
 
 # PART 0
-input = input.split("\n")
-input = [re.split(' -> |,', x) for x in input]
-
 # Usual input processing, this time creating one big list with ALL ints, in the incoming order
-t0 = []
-for line in input:
-    for row in line:
-        t0.append(int(row))
+input = [int(x) for x in re.split(' -> |,', input)]
 
 # Then grouping again by pairs of 4
-t1 = []
-for i in range(0, len(t0), 4):
-    t1.append([x for x in t0[i:i+4]])
+t1 = [input[i:i+4] for i in range(0, len(input), 4)]
 
 # PART 1
 # Creating a 2d list with size of the biggest number in the list
 # +1 because 0 is included in Input
-diagram = [[0]*(max(t0)+1) for i in range(max(t0)+1)]
+diagram = [[0]*(max(input)+1) for i in range(max(input)+1)]
 
 # Iterate through each Pair of Coordinates
 for line in t1:
@@ -57,7 +48,7 @@ for line in diagram:
 # PART 2
 # Creating a 2d list with size of the biggest number in the list
 # +1 because 0 is included in Input
-diagram = [[0]*(max(t0)+1) for i in range(max(t0)+1)]
+diagram = [[0]*(max(input)+1) for i in range(max(input)+1)]
 
 # Iterate through each Pair of Coordinates
 for line in t1:
@@ -92,6 +83,7 @@ for line in diagram:
 
 # for line in diagram:
 #     print(line)
-# SOLUTIONS
 
+
+# SOLUTIONS
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
