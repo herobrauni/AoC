@@ -13,3 +13,11 @@ x = copy.deepcopy(y)
 
 # deduplicate list
 temp_remove = list(dict.fromkeys(temp_remove))
+
+# returns a list with only the counters of the numbers in the specified range
+# so [0] is the count of 0, [1] is the count of 1, etc.
+[input.count(i) for i in range(9)]
+
+# removes the element on index i from the list and returns the element
+# can be used to remove the first element from a list and add it at the end with .append()
+list.pop(i)
