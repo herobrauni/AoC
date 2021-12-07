@@ -12,7 +12,7 @@ common = Counter([row[i] for row in input])
 x = copy.deepcopy(y)
 
 # deduplicate list
-temp_remove = list(dict.fromkeys(temp_remove))
+list_a = list(dict.fromkeys(list_a))
 
 # returns a list with only the counters of the numbers in the specified range
 # so [0] is the count of 0, [1] is the count of 1, etc.
