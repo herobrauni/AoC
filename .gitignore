@@ -1,3 +1,5 @@
 tmp*.py
 *.bak*
 input.txt
+session.txt
+debug.log
