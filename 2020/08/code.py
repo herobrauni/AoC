@@ -2,8 +2,9 @@
 # Author = brauni
 # Date = 2021-12-01
 import re
-# with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2020\\08\\example.txt", 'r') as f:
-with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2020\\08\\input.txt", 'r') as f:
+import os
+# with open(os.getcwd() + "\\2020\\08\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\08\\input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
     # input = []

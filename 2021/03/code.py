@@ -9,8 +9,8 @@
 import re
 
 
-# with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\03\\example.txt", 'r') as f:
-with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\03\\input.txt", 'r') as f:
+# with open(os.getcwd() + "\\2021\\03\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\03\\input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
     # input = []

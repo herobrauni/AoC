@@ -6,11 +6,12 @@
 import re
 from collections import defaultdict, Counter
 import copy
+import os
 
 solution_1, solution_2 = 0, 0
 
-# with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\06\\example.txt", 'r') as f:
-with open("C:\\Users\\brauni\\Documents\\GitHub\\AoC\\2021\\06\\input.txt", 'r') as f:
+# with open(os.getcwd() + "\\2021\\06\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\06\\input.txt", 'r') as f:
     input = f.read().strip().replace('\n', ',')
 
 # PART 0
