@@ -20,30 +20,30 @@ with open(os.getcwd() + "\\2021\\09\\input.txt", 'r') as f:
 inp = []
 for line in input:
     inp.append(list(map(int, str(line))))
+# Create a Border of 9s around the array to prevent out of bounds errors
+# We start at 1,1 to avoid the border, imagine an old school snake field
+input = copy.deepcopy(inp)
+for line in input:
+    line.insert(0, 9)
+    line.append(9)
+border = [9] * len(input[0])
+input.insert(0, border)
+input.append(border)
 
 """
 print(input)
 """
 
 # PART 1
-# Create a Border of 9s around the array to prevent out of bounds errors
-# We start at 1,1 to avoid the border, imagine an old school snake field
-test = copy.deepcopy(inp)
-for line in test:
-    line.insert(0, 9)
-    line.append(9)
-border = [9] * len(test[0])
-test.insert(0, border)
-test.append(border)
 
 lowpoints = []
 
 # iterate through all points and check if the current point is smaller than ALL the neighbours
 # we start at +1 and end at -1 to avoid the border
-for i in range(1, len(test)-1):
-    for j in range(1, len(test[0])-1):
-        if test[i][j] < min(test[i-1][j], test[i+1][j], test[i][j-1], test[i][j+1]):
-            lowpoints.append(test[i][j])
+for i in range(1, len(input)-1):
+    for j in range(1, len(input[0])-1):
+        if input[i][j] < min(input[i-1][j], input[i+1][j], input[i][j-1], input[i][j+1]):
+            lowpoints.append(input[i][j])
 
 solution_1 = sum([x+1 for x in lowpoints])
 
@@ -61,9 +61,9 @@ def check_neighbours(inp, i, j):
 
 clusters = []
 # iterate through all points and check the size of the basin it belongs to, if any
-for i in range(1, len(test)-1):
-    for j in range(1, len(test[0])-1):
-        clusters.append(check_neighbours(test, i, j))
+for i in range(1, len(input)-1):
+    for j in range(1, len(input[0])-1):
+        clusters.append(check_neighbours(input, i, j))
 
 clusters.sort(reverse=True)
 
