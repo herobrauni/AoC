@@ -12,12 +12,6 @@ solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\08\\example.txt", 'r') as f:
 with open(os.getcwd() + "\\2021\\08\\input.txt", 'r') as f:
-    # input = f.read()
-    # input = input.split("\n")
-    # input = []
-    # for line in f.readlines():
-    # input.append(int(line))
-    # input = [int(line) for line in f.readlines()]
     input = [line for line in f.readlines()]
 
 # PART 0
