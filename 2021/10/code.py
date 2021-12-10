@@ -15,12 +15,6 @@ solution_1, solution_2 = 0, 0
 with open(os.getcwd() + "\\2021\\10\\input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
-    # input = []
-    # for line in f.readlines():
-    # input.append(int(line))
-    # input = [int(line) for line in f.readlines()]
-    # input = [line for line in f.readlines()]
-
 # PART 0
 
 """
@@ -28,54 +22,53 @@ print(input)
 """
 
 # PART 1
-scores = {")": 3, "}": 1197, "]": 57, ">": 25137}
-brackets = {"(": ")", "{": "}", "[": "]", "<": ">"}
+scores = {")": 3, "}": 1197,
+          "]": 57, ">": 25137, "(": 1, "{": 3, "[": 2, "<": 4}
+brackets = {"(": ")", "{": "}", "[": "]", "<": ">",
+            ")": "(", "}": "{", "]": "[", ">": "<"}
 synt_e = []
 ignore = []
+# Iterate through the input by line and by character
 for line in input:
-    # print(line)
-    c = 0
     x = []
     for i in line:
-        c += 1
-        if re.match(r'\<|\(|\[|\{', i):
+        # if the char is a opening bracket add it to the list
+        if i in "<({[":
             x.append(i)
-        elif re.match(r'\)|\}|\]|\>', i):
+        # if the char is a closing bracket check if the last opening bracket is the same
+        # if it is we remove it from the list, otherwise we found a corrupted line and add it to the solution
+        # add the line to ignore to remove it from the input before p2
+        elif i in ">)}]":
             if i == brackets[x[-1]]:
-                # print("match", i, x[-1])
                 temp = x.pop(len(x) - 1)
             else:
-                synt_e += i
+                solution_1 += scores[i]
                 ignore += [line]
                 break
-#     print(x)
-# print(synt_e)
-solution_1 = sum(scores[i] for i in synt_e)
 
+# Remove lines already done in p1
 for i in ignore:
-    # print(i)
     input.remove(i)
 
 # PART 2
-scores = {"(": 1, "{": 3, "[": 2, "<": 4}
 missing_brackets = []
+# Iterate through the remaining input, line by line and character by character
 for line in input:
-    # print(line)
-    c = 0
     x = []
+    # add opening brackets to the list
+    # if a closing bracket is found, check if the last opening bracket is the same
+    # if so, remove it from the list, so we end up with a list of unclosed opening brackets
     for i in line:
-        c += 1
-        if re.match(r'\<|\(|\[|\{', i):
+        if i in "<({[":
             x.append(i)
-        elif re.match(r'\)|\}|\]|\>', i):
+        elif i in ">)}]":
             if i == brackets[x[-1]]:
-                # print("match", i, x[-1])
                 temp = x.pop(len(x) - 1)
-            else:
-                break
+    # Reverse the list to have the correct order for the closing brackets
     x.reverse()
     missing_brackets.append(x)
 
+# Calculate the score for each line
 s = []
 for i in missing_brackets:
     score = 0
@@ -83,7 +76,7 @@ for i in missing_brackets:
         score = score*5 + scores[j]
     s.append(score)
 
-
+# Select the middle score
 s.sort()
 solution_2 = s[len(s)//2]
 
