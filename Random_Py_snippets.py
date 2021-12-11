@@ -21,3 +21,11 @@ list_a = list(dict.fromkeys(list_a))
 # removes the element on index i from the list and returns the element
 # can be used to remove the first element from a list and add it at the end with .append()
 list.pop(i)
+
+
+# For Else loop -> else runs only if no break is called in the loop
+for line in input:
+    if line == "":
+        break
+else:
+    print(line)
