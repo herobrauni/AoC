@@ -12,8 +12,8 @@ import math
 solution_1, solution_2 = 0, 0
 
 
-# with open(os.getcwd() + "\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\input.txt", 'r') as f:
+# with open(os.getcwd() + "\\2021\\12\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\12\\input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
 
@@ -65,9 +65,6 @@ def get_path(start, path, p2: bool = False):
             test = path + [start]
             if len([x for x in test if test.count(x) > 1 and x.islower()]) < 2:
                 new_path = get_path(i, path + [start], p2)
-                # if new_path:
-                #     print(new_path)
-                #     all_paths.append(new_path)
 
 
 get_path("start", [])
@@ -75,15 +72,7 @@ solution_1 = len(all_paths)
 all_paths = []
 get_path("start", [], p2=True)
 solution_2 = len(all_paths)
-# for line in all_paths:
-#     print(",".join(line))
-
-# PART 2
 
 
-# for line in path_no_duplicates:
-#     print(line)
 # SOLUTIONS
-
-
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
