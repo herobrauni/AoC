@@ -37,10 +37,10 @@ numbers = []
 for i in range(0, len(numbers2), 2):
     numbers.append(numbers2[i:i+2])
 
-sheet = ["."] * (max([x[1] for x in numbers])+1)
+sheet = [" "] * (max([x[1] for x in numbers])+1)
 max_y = max([x[0] for x in numbers])
 for i in range(len(sheet)):
-    sheet[i] = ["."] * (max_y+1)
+    sheet[i] = [" "] * (max_y+1)
 
 
 """
@@ -68,9 +68,6 @@ def fold_y(sheet, y):
     return sheet[:y]
 
 
-x = 5
-
-
 def fold_x(sheet, x):
     for i in range(len(sheet)):
         for j in range(len(sheet[i])):
@@ -79,21 +76,29 @@ def fold_x(sheet, x):
     return [i[:x] for i in sheet]
 
 
-for line in folds:
+for line in folds[:1]:
     line = line.split("=")
     if line[0] == "y":
         sheet = fold_y(sheet, int(line[1]))
     if line[0] == "x":
         sheet = fold_x(sheet, int(line[1]))
-    c = 0
-    for x in sheet:
-        for y in x:
-            if y == "#":
-                c += 1
-    print(c)
+
+for line in sheet:
+    for i in line:
+        if i == "#":
+            solution_1 += 1
+
 
 # PART 2
+for line in folds[1:]:
+    line = line.split("=")
+    if line[0] == "y":
+        sheet = fold_y(sheet, int(line[1]))
+    if line[0] == "x":
+        sheet = fold_x(sheet, int(line[1]))
 
+for line in sheet:
+    print("".join(line))
 
 # SOLUTIONS
 
