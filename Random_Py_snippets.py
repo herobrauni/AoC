@@ -29,3 +29,7 @@ for line in input:
         break
 else:
     print(line)
+
+
+# Quick if else for all elements in list
+["Senior" if age >= 55 and handicap >= 8 else "Open" for (age, handicap) in data]
