@@ -11,8 +11,8 @@ import math
 
 solution_1, solution_2 = 0, 0
 
-with open(os.getcwd() + "\\2021\\16\\example.txt", 'r') as f:
-    # with open(os.getcwd() + "\\2021\\16\\input.txt", 'r') as f:
+# with open(os.getcwd() + "\\2021\\16\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\16\\input.txt", 'r') as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
@@ -34,26 +34,38 @@ print(inp[2])
 
 # PART 1
 # find versions
-# Type = 4 -> literal value -> single binary number
-# Type != 4 -> Operator
+# Type 0 = sum // done
+# Type 1 = multiply
+# Type 2 = Min
+# Type 3 = Max
+# Type 4 = literal value
+# Type 5 = greater than -> 1 if sub 0 > sub 1
+# Type 6 = less than -> 1 if sub 0 < sub 1
+# Type 7 = equal to -> 1 if sub 0 == sub 1
 
 
 def decode_package(package, pos):
-    version = "".join(package[pos:pos+3])
+    version = int("".join(package[pos:pos+3]), 2)
+    global solution_1
+    solution_1 += version
     pos += 3
-    type_id = "".join(package[pos:pos+3])
+    type_id = int("".join(package[pos:pos+3]), 2)
     pos += 3
-    if type_id != "100":
-        length_type_id = package[pos]
-        pos += 1
-        if length_type_id == "0":  # conatains length amount of bytes for subpackages
-            length = "".join(package[pos:pos+15])
-            pos += 15
-        elif length_type_id == "1":  # contains length amount of subpackages
-            length = "".join(package[pos:pos+11])
-            pos += 11
-        return int(version, 2), int(type_id, 2), int(length_type_id, 2), length, pos
-    elif type_id == "100":
+    if type_id == 0:
+        return type0(package, pos)
+    if type_id == 1:
+        return type1(package, pos)
+    if type_id == 2:
+        return type2(package, pos)
+    if type_id == 3:
+        return type3(package, pos)
+    if type_id == 5:
+        return type5(package, pos)
+    if type_id == 6:
+        return type6(package, pos)
+    if type_id == 7:
+        return type7(package, pos)
+    elif type_id == 4:
         sub_packs = []
         while package[pos] != "0":
             sub_packs += package[pos+1:pos+5]
@@ -61,13 +73,178 @@ def decode_package(package, pos):
         sub_packs += package[pos+1:pos+5]
         pos += 5
         value = int("".join(sub_packs), 2)
-        return int(version, 2), int(type_id, 2), sub_packs, value, pos
+        return pos, value
 
 
-d = decode_package(inp, 0)
-print(d)
-assert d[3] == '000000000011011'
+def type0(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    value = 0
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            value += t2
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            value += t2
+    return pos, value
+
+
+def type1(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    value = 1
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            value = value * t2
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            value = value * t2
+    return pos, value
+
+
+def type2(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    value = 99999999999999
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            value = min(value, t2)
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            value = min(value, t2)
+    return pos, value
+
+
+def type3(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    value = -99999999999999
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            value = max(value, t2)
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            value = max(value, t2)
+    return pos, value
+
+
+def type5(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    temp = []
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            temp.append(t2)
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            temp.append(t2)
+    value = 1 if temp[0] > temp[1] else 0
+    return pos, value
+
+
+def type6(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    temp = []
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            temp.append(t2)
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            temp.append(t2)
+    value = 1 if temp[0] < temp[1] else 0
+    return pos, value
+
+
+def type7(package, pos):
+    length_type_id = package[pos]
+    pos += 1
+    temp = []
+    if length_type_id == "0":  # conatains length amount of bytes for subpackages
+        length = int("".join(package[pos:pos+15]), 2)
+        pos += 15
+        target_pos = pos + length
+        while pos < target_pos:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            temp.append(t2)
+    elif length_type_id == "1":  # contains length amount of subpackages
+        length = int("".join(package[pos:pos+11]), 2)
+        pos += 11
+        while length > 0:
+            t1, t2 = decode_package(package, pos)
+            pos = t1
+            length -= 1
+            temp.append(t2)
+    value = 1 if temp[0] == temp[1] else 0
+    return pos, value
+
+
+solution_2 = decode_package(inp, 0)[1]
+
 
 # PART 2
 # SOLUTIONS
-# print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
+print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
+assert solution_1 == 971
+assert solution_2 == 831996589851

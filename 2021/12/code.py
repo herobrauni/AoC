@@ -29,7 +29,7 @@ for i in range(len(input)):
         input[i][0], input[i][1] = input[i][1], input[i][0]
 
 # Create a dictonary of all connections/destinations of a single point (i.e. A: "c,d,e" )
-# start can not be in destinations and end can not be a key in the dictonary
+# "start" can not be in destinations and "end" can not be a key in the dictonary
 paths = {}
 for line in input:
     if line[0] not in paths:
