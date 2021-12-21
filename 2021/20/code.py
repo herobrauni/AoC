@@ -11,8 +11,8 @@ import math
 
 solution_1, solution_2 = 0, 0
 
-# with open(os.getcwd() + "\\2021\\20\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\20\\input.txt", 'r') as f:
+# with open(os.getcwd() + "/2021/20/example.txt", 'r') as f:
+with open(os.getcwd() + "/2021/20/input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n\n")
 
@@ -22,13 +22,13 @@ enhance = input[0]
 pic = [list(x) for x in input[1].split("\n")]
 
 
-def increase_canvas(pic, n):
+def increase_canvas(pic, n, filler):
     for _ in range(n):
-        pic.insert(0, ["."] * len(pic[0]))
-        pic.append(["."] * len(pic[0]))
+        pic.insert(0, [filler] * len(pic[0]))
+        pic.append([filler] * len(pic[0]))
         for i in range(len(pic)):
-            pic[i].insert(0, ".")
-            pic[i].append(".")
+            pic[i].insert(0, filler)
+            pic[i].append(filler)
     return pic
 
 
@@ -56,11 +56,17 @@ def get_grid_binary(pic, x, y, filler):
 
 
 # for i in range(2):
-#     pic = increase_canvas(pic, 1)
+n = 50
+pic = increase_canvas(pic, n, ".")
+
+filler = (".", "#")
+
+for i in range(n):
     new_canvas = copy.deepcopy(pic)
     for j in range(len(pic)):
         for k in range(len(pic[0])):
-            new_canvas[j][k] = enhance[get_grid_binary(pic, j, k, "#")]
+            new_canvas[j][k] = enhance[get_grid_binary(
+                pic, j, k, filler[i % 2])]
     pic = new_canvas
 
 
