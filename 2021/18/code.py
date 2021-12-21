@@ -9,81 +9,103 @@ import copy
 import os
 import math
 import ast
-
+import itertools
 
 solution_1, solution_2 = 0, 0
 
-with open(os.getcwd() + "\\2021\\18\\example.txt", 'r') as f:
-    # with open(os.getcwd() + "\\2021\\18\\input.txt", 'r') as f:
-    # input = f.read()
-    # input = input.split("\n")
-    # input = []
-    # for line in f.readlines():
-    # input.append(int(line))
-    # input = [int(line) for line in f.readlines()]
-    input = [line for line in f.readlines()]
-
-# PART 0
-test = ast.literal_eval(input[0])
-# if not isinstance(test, int):
-#     for a in range(len(test)):
-#         if not isinstance(test[a], int):
-#             for b in range(len(test[a])):
-#                 if not isinstance(test[a][b], int):
-#                     for c in range(len(test[a][b])):
-#                         if not isinstance(test[a][b][c], int):
-#                             for d in range(len(test[a][b][c])):
-#                                 print(test[a][b][c][d])
+# with open(os.getcwd() + "\\2021\\18\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\18\\input.txt", 'r') as f:
+    input = [line.strip() for line in f.readlines()]
 
 
-def depth(l):
-    if isinstance(l, list):
-        return 1 + max(depth(item) for item in l)
+def explode(line):
+    inp_list_with_brackets = list(line)
+    for i in range(len(inp_list_with_brackets)):
+        if "".join(inp_list_with_brackets[i:i+2]).isalnum():
+            inp_list_with_brackets[i] = "".join(inp_list_with_brackets[i:i+2])
+            del inp_list_with_brackets[i+1]
+
+    bc = 0
+    blub = -1
+    for i in range(len(inp_list_with_brackets)):
+        if inp_list_with_brackets[i] == "[":
+            bc += 1
+        elif inp_list_with_brackets[i] == "]":
+            bc -= 1
+        if bc > 4:
+            left_deepest_element = [
+                int(inp_list_with_brackets[i+1]), int(inp_list_with_brackets[i+3])]
+            blub = i
+            break
+    if blub == -1:
+        return line
+
+    for i in range(blub, 0, -1):
+        if inp_list_with_brackets[i].isalnum():
+            inp_list_with_brackets[i] = int(
+                inp_list_with_brackets[i])+left_deepest_element[0]
+            break
+    for i in range(blub + 5, len(inp_list_with_brackets)):
+        if inp_list_with_brackets[i].isalnum():
+            inp_list_with_brackets[i] = int(
+                inp_list_with_brackets[i])+left_deepest_element[1]
+            break
+    inp_list_with_brackets = inp_list_with_brackets[:blub] + ["0"] + inp_list_with_brackets[
+        blub+5:]
+    return str("".join([str(x) for x in inp_list_with_brackets]))
+
+
+def split(line):
+    for i in range(len(line)):
+        if line[i].isalnum() and line[i+1].isalnum():
+            inp_list_with_brackets = list(line)
+            del inp_list_with_brackets[i:i+2]
+            inp_list_with_brackets.insert(i, "".join(["[", str(math.floor(int("".join(
+                [line[i:i+2]])) / 2)), ",", str(math.ceil(int("".join([line[i:i+2]])) / 2)), "]"]))
+            return str("".join([str(x) for x in inp_list_with_brackets]))
+    return line
+
+
+def addition(line, to_add):
+    return "[" + line + "," + str(to_add).replace(" ", "") + "]"
+
+
+def magnitude(x):
+    if isinstance(x, list):
+        return(magnitude(x[0])*3 + magnitude(x[1])*2)
     else:
-        return 0
+        return x
 
 
-def levels(l, depth=-1):
-    if not isinstance(l, list):
-        yield (l, depth)
-    else:
-        for sublist in l:
-            yield from levels(sublist, depth + 1)
+def reduce(line):
+    test = -1
+    while line != test:
+        test = line
+        if line != explode(line):
+            line = explode(line)
+        elif line != split(line):
+            line = split(line)
+    return line
 
 
-def flatten(container):
-    for i in container:
-        if isinstance(i, (list, tuple)):
-            for j in flatten(i):
-                yield j
-        else:
-            yield i
+temp = input[0]
+for i in range(1, len(input)):
+    temp = addition(temp, input[i])
+    temp = reduce(temp)
 
 
-list(levels(test))
-
-deepest_elements = [x for x in list(levels(test)) if x[1] == depth(test)-1]
-left_deepest_element = [x[0] for x in deepest_elements[:2]]
-
-in_string = input[0]
-flat = list(flatten(test))
-
-if (str(flat).rfind(str(left_deepest_element[0])+", "+str(left_deepest_element[1]))) - 3 > 0:
-    left_from_deep = int(str(flat)[(str(flat).rfind(
-        str(left_deepest_element[0])+", "+str(left_deepest_element[1]))) - 3])
-
-if (str(flat).rfind(str(left_deepest_element[0])+", "+str(left_deepest_element[1]))) - 3 
-
-in_string.replace(str(left_deepest_element).replace(" ", ""), "X")
-"""
-print(input)
-"""
-# PART 1
+x = ast.literal_eval(temp)
+solution_1 = magnitude(x)
 
 
-# PART 2
+perms = list(itertools.permutations(range(len(input)), 2))
 
+for x in perms:
+    temp = addition(input[x[0]], input[x[1]])
+    temp = reduce(temp)
+    x = ast.literal_eval(temp)
+    temp_sol = magnitude(x)
+    if temp_sol > solution_2:
+        solution_2 = temp_sol
 
-# SOLUTIONS
-
-# print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
+print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
