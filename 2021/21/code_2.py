@@ -16,11 +16,6 @@ solution_1, solution_2 = 0, 0
 with open(os.getcwd() + "/2021/21/input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
-    # input = []
-    # for line in f.readlines():
-    # input.append(int(line))
-    # input = [int(line) for line in f.readlines()]
-    # input = [line for line in f.readlines()]
 
 # PART 0
 player1 = int(input[0][-1])
@@ -40,28 +35,49 @@ rolls = 0
 winner = [0, 0]
 resets = 0
 
+perms_3 = list(itertools.product(dirac_dice, repeat=3))
+sum_perms = [sum(x) for x in perms_3]
+perms_counter = Counter(sum_perms)
+keys = perms_counter.keys()
+# sum([perms_counter[x] for x in perms_counter if x > 7])
 
-def roll(player1, player2, score1, score2, perm, turn):
+
+def roll_1(player1, player2, score1, score2, perm, turn):
     global winner
     global resets
     # print(player1, player2, score1, score2, perm, turn)
     resets += 1
-    while turn > 5:
-        turn -= 6
     # print(turn)
-    if turn in range(3):
+    if turn == 0:
         player1 = walk(player1, perm)
         score1 += player1
         if score1 >= 21:
-            winner[0] += 1
-            return
-    elif turn in range(3, 6):
+            return 1
+    elif turn == 1:
         player2 = walk(player2, perm)
         score2 += player2
         if score2 >= 21:
-            winner[1] += 1
-            return
-    [roll(player1, player2, score1, score2, x, turn+1) for x in range(1, 4)]
+            return 0
+    return sum([roll_1(player1, player2, score1, score2, x, (turn+1) % 2) * perms_counter[x] for x in keys])
+
+
+def roll_2(player1, player2, score1, score2, perm, turn):
+    global winner
+    global resets
+    # print(player1, player2, score1, score2, perm, turn)
+    resets += 1
+    # print(turn)
+    if turn == 0:
+        player1 = walk(player1, perm)
+        score1 += player1
+        if score1 >= 21:
+            return 0
+    elif turn == 1:
+        player2 = walk(player2, perm)
+        score2 += player2
+        if score2 >= 21:
+            return 1
+    return sum([roll_2(player1, player2, score1, score2, x, (turn+1) % 2) * perms_counter[x] for x in keys])
 
 
 def walk(position, value):
@@ -71,18 +87,21 @@ def walk(position, value):
     return position
 
 
-# winner = [0, 0]
-[roll(player1, player2, score1, score2, x, 0) for x in range(1, 4)]
+# sum([1999636718756, 555669346828, 108910351592, 11451682847,
+#     58308639397748, 23142061611472, 20677802906690])
 
-print(dirac_dice)
+winner = [0, 0]
+winner[0] = sum([roll_1(player1, player2, score1, score2, x, 0) * perms_counter[x]
+                 for x in keys])
+winner[1] = sum([roll_2(player1, player2, score1, score2, x, 0) * perms_counter[x]
+                 for x in keys])
+solution_2 = max(winner[0], winner[1])
 
-len(list(itertools.product(dirac_dice, repeat=21)))
 
-
-print(winner)
-print(resets)
+# print(winner)
+# print(resets)
 # PART 2
 
 # SOLUTIONS
 
-# print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
+print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
