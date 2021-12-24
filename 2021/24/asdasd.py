@@ -44,88 +44,67 @@ while number > 10000000000000:
     n = [int(x) for x in list(str(number))]
     # print(number)
     # Number 1
-    # w = int(n[0])
-    # x = 1
     y = n[0]+1
     z = y
 
     # Number 2
-    # w = int(n[1])
-    # x = 1
     y = n[1]+9
     z = z*26+y
 
     # Number 3
-    # w = int(n[2])
-    # x = 1
     y = n[2]+11
     z = z*26+y
 
     # Number 4
-    # w = int(n[3])
     x = 0 if (z % 26)-13 == n[3] else 1
     y = 25*x+1
-    z = (z//26)*y + (n[3]+6*x)
+    z = (z//26)*y + ((n[3]+6)*x)
 
     # Number 5
-    # w = int(n[4])
-    # x = 1
     y = n[4]+6
     z = z*26+y
 
     # Number 6
-    # w = int(n[5])
-    # x = 1
     y = n[5]+13
     z = z*26+y
 
     # Number 7
-    # w = int(n[6])
     x = 0 if (z % 26)-14 == n[6] else 1
     y = 25*x+1
-    z = z*y + (n[6]+13*x)
+    z = z*y + ((n[6]+13)*x)
 
     # Number 8
-    # w = int(n[7])
-    # x = 1
     y = n[7]+5
     z = z*26+y
 
     # Number 9
-    # w = int(n[8])
     x = 0 if (z % 26)-8 == n[8] else 1
     y = 25*x+1
-    z = z*y + (n[8]+7*x)
+    z = z*y + ((n[8]+7)*x)
 
     # Number 10
-    # w = int(n[9])
-    # x = 1
     y = n[9]+2
     z = z*26+y
 
     # Number 11
-    # w = int(n[10])
     x = 0 if (z % 26)-9 == n[10] else 1
     y = 25*x+1
-    z = (z//26)*y + (n[10]+10*x)
+    z = (z//26)*y + ((n[10]+10)*x)
 
     # Number 12
-    # w = int(n[11])
     x = 0 if (z % 26)-11 == n[11] else 1
     y = 25*x+1
-    z = (z//26)*y + (n[11]+14*x)
+    z = (z//26)*y + ((n[11]+14)*x)
 
     # Number 13
-    # w = int(n[12])
     x = 0 if (z % 26)-6 == n[12] else 1
     y = 25*x+1
-    z = (z//26)*y + (n[12]+7*x)
+    z = (z//26)*y + ((n[12]+7)*x)
 
     # Number 14
-    # w = int(n[13])
     x = 0 if (z % 26)-5 == n[13] else 1
     y = 25*x+1
-    z = (z//26)*y + (n[13]+1*x)
+    z = (z//26)*y + ((n[13]+1)*x)
 
     if z == 0:
         solution_1 = number
@@ -136,3 +115,18 @@ while number > 10000000000000:
 # SOLUTIONS
 
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
+
+
+number = 100000000000000
+
+while number > 10000000000000:
+    w, x, y, z = 0, 0, 0, 0
+    i = 0
+    number -= 1
+    if "0" in str(number):
+        continue
+    n = [int(x) for x in list(str(number))]
+
+n = [int(x) for x in list(str(5389))]
+if n[-1] == n[-2]+1 == n[-3]+6 == n[-4]+4:
+    print("".join([str(x) for x in n]))
