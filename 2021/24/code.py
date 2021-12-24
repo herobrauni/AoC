@@ -34,7 +34,7 @@ print(input)
 
 # PART 1
 number = 100000000000000
-number = 99999965412437 + 1
+number = 99999999995389
 while number > 0:
     helper = {"w": 0, "x": 0, "y": 0, "z": 0}
     i = 0
