@@ -1,10 +1,10 @@
 # AoC
 
-[Advent of Code 2021](https://adventofcode.com)
+[Advent of Code 2022](https://adventofcode.com)
 
 
 <!--- advent_readme_stars table --->
-## 2021 Results
+## 2022 Results
 
 | Day | Part 1 | Part 2 |
 | :---: | :---: | :---: |
