@@ -32,4 +32,5 @@ else:
 
 
 # Quick if else for all elements in list
-["Senior" if age >= 55 and handicap >= 8 else "Open" for (age, handicap) in data]
+["Senior" if age >= 55 and handicap >=
+    8 else "Open" for (age, handicap) in data]
