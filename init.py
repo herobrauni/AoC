@@ -64,8 +64,8 @@ for y in years:
         day_pos = year_pos+"/"+str(day_string)
         if MAKE_CODE_TEMPLATE and not os.path.exists(day_pos+"/code.py"):
             code = open(day_pos+"/code.py", "w+")
-            code.write("# Advent of code Year "+str(y)+" Day "+str(d)+" solution\n# Author = "+author+"\n# Date = "+date +
-                       "\n\"https://adventofcode.com/" + str(y) + "/day/" + str(d) + "\"\n\nimport re\nfrom collections import Counter\nimport copy\nimport os\nimport math\n\nsolution_1, solution_2=0, 0\n\n  # with open(os.getcwd() + \"/" + str(y) + "/" + day_string + "/example.txt\", 'r') as f:\nwith open(os.getcwd() + \"/" + str(y) + "/" + day_string + "/input.txt\", 'r') as f:\n    # input = f.read()\n    # input = input.split(\"\\n\")\n    # input = []\n    # for line in f.readlines():\n        # input.append(int(line))\n    # input = [int(line) for line in f.readlines()]\n    input = [line for line in f.readlines()]\n\n# PART 0\n\n\"\"\"\nprint(input)\n\"\"\"\n\n# PART 1\n\n\n\n# PART 2\n\n\n\n# SOLUTIONS\n\nprint(\"Part One : \"  + str(solution_1) + \"\\nPart Two : \" + str(solution_2))")
+            code.write("# Advent of code Year "+str(y)+" Day "+str(d)+" solution\n# Author = "+author+"\n# Date = "+date + "\n\"https://adventofcode.com/" + str(y) + "/day/" + str(d) + "\"\n\nimport re\nfrom collections import Counter\nimport copy\nimport os\nimport math\n\nsolution_1, solution_2=0, 0\n\n  # with open(os.getcwd() + \"/" + str(y) + "/" + day_string + "/example.txt\", 'r') as f:\nwith open(os.getcwd() + \"/" + str(y) + "/" + day_string +
+                       "/input.txt\", 'r') as f:\n    # input = f.read()\n    # input = input.split(\"\\n\")\n    # input = []\n    # for line in f.readlines():\n        # input.append(int(line))\n    # input = [int(line) for line in f.readlines()]\n    input = [line for line in f.readlines()]\n\n# PART 0\n\n\nprint(input)\n\n\n# PART 1\n\n\n\n# PART 2\n\n\n\n# SOLUTIONS\n\nprint(\"Part One : \"  + str(solution_1) + \"\\nPart Two : \" + str(solution_2))")
             code.close()
             os.startfile(os.getcwd() + "\\" + str(y) +
                          "\\" + day_string + "\\code.py")
