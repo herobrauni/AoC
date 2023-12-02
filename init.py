@@ -28,7 +28,7 @@ OVERWRITE = False
 # DATE SPECIFIC PARAMETERS
 # Date automatically put in the code templates.
 date = dt.today().strftime("%Y-%m-%d")
-starting_advent_of_code_year = 2022  # You can go as early as 2015.
+starting_advent_of_code_year = 2023  # You can go as early as 2015.
 # The setup will download all advent of code data up until that date included
 last_advent_of_code_year = dt.today().year
 # last_advent_of_code_year = 2015
@@ -93,7 +93,7 @@ for y in years:
                 + str(y)
                 + "/"
                 + day_string
-                + '/input.txt", \'r\') as f:\n    # input = f.read()\n    # input = input.split("\\n")\n    # input = []\n    # for line in f.readlines():\n        # input.append(int(line))\n    # input = [int(line) for line in f.readlines()]\n    input = [line for line in f.readlines()]\n\n# PART 0\n\n\nprint(input)\n\n\n# PART 1\n\n\n\n# PART 2\n\n\n\n# SOLUTIONS\n\nprint("Part One : "  + str(solution_1) + "\\nPart Two : " + str(solution_2))'
+                + '/input.txt", \'r\') as f:\n    input = f.read()\n    input = input.split("\\n")\n    # input = []\n    # for line in f.readlines():\n        # input.append(int(line))\n    # input = [int(line) for line in f.readlines()]\n   # input = [line for line in f.readlines()]\n\n# PART 0\n\n\nprint(input)\n\n\n# PART 1\n\n\n\n# PART 2\n\n\n\n# SOLUTIONS\n\nprint("Part One : "  + str(solution_1) + "\\nPart Two : " + str(solution_2))'
             )
             code.close()
             os.startfile(os.getcwd() + "\\" + str(y) + "\\" + day_string + "\\code.py")
