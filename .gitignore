@@ -1,5 +1,5 @@
 tmp*.py
 *.bak*
-# input.txt
 session.txt
 debug.log
+2022/16/*
