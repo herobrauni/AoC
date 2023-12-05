@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/10/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/10/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/10/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -36,19 +36,19 @@ for row in range(0, len(input)):
     if input[row] == "noop":
         cycle += 1
     else:
-        bla[cycle+1] = x
+        bla[cycle + 1] = x
         x = x + int(input[row].split()[1])
         cycle += 2
-solution_1 = sum([bla[y-1] * y for y in range(20, 240, 40)])
+solution_1 = sum([bla[y - 1] * y for y in range(20, 240, 40)])
 
 # PART 2
 for j in range(0, 240):
     i = j if j < 40 else j % 40
     # print(i, bla[i])
-    if (i+1) % 40 == 0:
-        print("#") if bla[j] in [i-1, i, i+1] else print(" ")
+    if (i + 1) % 40 == 0:
+        print("#") if bla[j] in [i - 1, i, i + 1] else print(" ")
     else:
-        print("#", end="") if bla[j] in [i-1, i, i+1] else print(" ", end="")
+        print("#", end="") if bla[j] in [i - 1, i, i + 1] else print(" ", end="")
 
 # SOLUTIONS
 

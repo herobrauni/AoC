@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/11/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/11/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/11/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
     input = [x.split("\n") for x in input]
@@ -36,7 +36,7 @@ for i in range(len(input)):
         "div": int(input[i][3][21:]),
         "true": int(input[i][4][29:]),
         "false": int(input[i][5][30:]),
-        "counter": 0
+        "counter": 0,
     }
 
 for i in range(20):
@@ -47,16 +47,26 @@ for i in range(20):
             monkeys[j]["counter"] += 1
             t = monkeys[j]["items"].pop(0)
             match monkeys[j]["operation"].split()[1]:
-                case "+": t = t + int(monkeys[j]["operation"].split()[2]) if monkeys[j]["operation"].split()[2] != "old" else t + t
-                case "*": t = t * int(monkeys[j]["operation"].split()[2]) if monkeys[j]["operation"].split()[2] != "old" else t * t
-            t = t//3
+                case "+":
+                    t = (
+                        t + int(monkeys[j]["operation"].split()[2])
+                        if monkeys[j]["operation"].split()[2] != "old"
+                        else t + t
+                    )
+                case "*":
+                    t = (
+                        t * int(monkeys[j]["operation"].split()[2])
+                        if monkeys[j]["operation"].split()[2] != "old"
+                        else t * t
+                    )
+            t = t // 3
             if t % divs[j] == 0:
                 monkeys[monkeys[j]["true"]]["items"].append(t)
             else:
                 monkeys[monkeys[j]["false"]]["items"].append(t)
 solution_1 = [monkeys[x]["counter"] for x in monkeys]
 solution_1.sort(reverse=True)
-solution_1 = solution_1[0]*solution_1[1]
+solution_1 = solution_1[0] * solution_1[1]
 
 
 # PART 2
@@ -68,7 +78,7 @@ for i in range(len(input)):
         "div": int(input[i][3][21:]),
         "true": int(input[i][4][29:]),
         "false": int(input[i][5][30:]),
-        "counter": 0
+        "counter": 0,
     }
 for i in range(10000):
     # print(i)
@@ -81,11 +91,16 @@ for i in range(10000):
                 match monkeys[j]["operation"].split()[1]:
                     # case "+": t = t + int(monkeys[j]["operation"].split()[2]) if monkeys[j]["operation"].split()[2] != "old" else t + t
                     case "+":
-                        t[z] = (t[z] + int(monkeys[j]["operation"].split()[2])) % divs[z]
+                        t[z] = (t[z] + int(monkeys[j]["operation"].split()[2])) % divs[
+                            z
+                        ]
                     # case "*": t = t * int(monkeys[j]["operation"].split()[2]) if monkeys[j]["operation"].split()[2] != "old" else t * t
                     case "*":
-                        t[z] = (t[z] * int(monkeys[j]["operation"].split()[2])
-                                ) % divs[z] if monkeys[j]["operation"].split()[2] != "old" else (t[z] ** 2) % divs[z]
+                        t[z] = (
+                            (t[z] * int(monkeys[j]["operation"].split()[2])) % divs[z]
+                            if monkeys[j]["operation"].split()[2] != "old"
+                            else (t[z] ** 2) % divs[z]
+                        )
 
             if t[j] == 0:
                 monkeys[monkeys[j]["true"]]["items"].append(t)
@@ -95,7 +110,7 @@ for i in range(10000):
 
 solution_2 = [monkeys[x]["counter"] for x in monkeys]
 solution_2.sort(reverse=True)
-solution_2 = solution_2[0]*solution_2[1]
+solution_2 = solution_2[0] * solution_2[1]
 
 # SOLUTIONS
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))

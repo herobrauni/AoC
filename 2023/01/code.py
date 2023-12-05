@@ -13,7 +13,7 @@ import numpy as np
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2023/01/example.txt", "r") as f:
-with open(os.getcwd() + "/2023/01/input.txt", "r") as f:
+with open(os.getcwd() + "/AoC_private/2023/01/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []

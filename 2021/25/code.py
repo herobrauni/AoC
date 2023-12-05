@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2021/25/example.txt", 'r') as f:
-with open(os.getcwd() + "/2021/25/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2021/25/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -47,27 +47,27 @@ def move_until_done(input_formated):
             # EAST
             for j in range(len(input_formated[i])):
                 if j < len(input_formated[i]) - 1:
-                    if input_formated[i][j] == '>' and input_formated[i][j + 1] == '.':
-                        move_arr.append([i, j, i, j+1])
-                elif input_formated[i][j] == '>' and input_formated[i][0] == '.':
+                    if input_formated[i][j] == ">" and input_formated[i][j + 1] == ".":
+                        move_arr.append([i, j, i, j + 1])
+                elif input_formated[i][j] == ">" and input_formated[i][0] == ".":
                     move_arr.append([i, j, i, 0])
         for line in move_arr:
             n += 1
-            input_formated[line[0]][line[1]] = '.'
-            input_formated[line[2]][line[3]] = '>'
+            input_formated[line[0]][line[1]] = "."
+            input_formated[line[2]][line[3]] = ">"
             # DOWN
         move_arr = []
         for i in range(len(input_formated)):
             for j in range(len(input_formated[i])):
                 if i < len(input_formated) - 1:
-                    if input_formated[i][j] == 'v' and input_formated[i + 1][j] == '.':
-                        move_arr.append([i, j, i+1, j])
-                elif input_formated[i][j] == 'v' and input_formated[0][j] == '.':
+                    if input_formated[i][j] == "v" and input_formated[i + 1][j] == ".":
+                        move_arr.append([i, j, i + 1, j])
+                elif input_formated[i][j] == "v" and input_formated[0][j] == ".":
                     move_arr.append([i, j, 0, j])
         for line in move_arr:
             n += 1
-            input_formated[line[0]][line[1]] = '.'
-            input_formated[line[2]][line[3]] = 'v'
+            input_formated[line[0]][line[1]] = "."
+            input_formated[line[2]][line[3]] = "v"
     global solution_1
     solution_1 = moves
     return input_formated

@@ -14,7 +14,7 @@ import itertools
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2015/09/example.txt", "r") as f:
-with open(os.getcwd() + "/2015/09/input.txt", "r") as f:
+with open(os.getcwd() + "/AoC_private/2015/09/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -44,13 +44,17 @@ solution_1 = 99999999999
 
 # PART 1
 for directions in bla:
-    y = sum([nodes[directions[x]][directions[x+1]] for x in range(len(directions)-1)])
-    solution_1 = y if y<solution_1 else solution_1
+    y = sum(
+        [nodes[directions[x]][directions[x + 1]] for x in range(len(directions) - 1)]
+    )
+    solution_1 = y if y < solution_1 else solution_1
 # PART 2
 solution_2 = 0
 for directions in bla:
-    y = sum([nodes[directions[x]][directions[x+1]] for x in range(len(directions)-1)])
-    solution_2 = y if y>solution_2 else solution_2
+    y = sum(
+        [nodes[directions[x]][directions[x + 1]] for x in range(len(directions) - 1)]
+    )
+    solution_2 = y if y > solution_2 else solution_2
 # SOLUTIONS
 
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))

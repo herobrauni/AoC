@@ -13,7 +13,7 @@ import numpy as np
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/09/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/09/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/09/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -29,11 +29,11 @@ print(input)
 
 
 def move_tail(h, t):
-    if round(np.linalg.norm(h-t)) > 1:
+    if round(np.linalg.norm(h - t)) > 1:
         if h[0] == t[0]:  # same x
-            t[1] = t[1] + 1 if h[1] > t[1] else t[1]-1
+            t[1] = t[1] + 1 if h[1] > t[1] else t[1] - 1
         elif h[1] == t[1]:  # same y
-            t[0] = t[0] + 1 if h[0] > t[0] else t[0]-1
+            t[0] = t[0] + 1 if h[0] > t[0] else t[0] - 1
         else:
             if h[0] > t[0] and h[1] > t[1]:  # up and right
                 t = np.add(t, [1, 1])
@@ -53,10 +53,14 @@ def move_head(h, direction):
     up = np.array([0, 1])
     down = np.array([0, -1])
     match direction:
-        case "U": h = np.add(h, up)
-        case "D": h = np.add(h, down)
-        case "L": h = np.add(h, left)
-        case "R": h = np.add(h, right)
+        case "U":
+            h = np.add(h, up)
+        case "D":
+            h = np.add(h, down)
+        case "L":
+            h = np.add(h, left)
+        case "R":
+            h = np.add(h, right)
     return h
 
 
@@ -88,7 +92,7 @@ for line in input:
         h = move_head(h, direction)
         tails[0] = move_tail(h, tails[0])
         for x in range(8):
-            tails[x+1] = move_tail(tails[x], tails[x+1])
+            tails[x + 1] = move_tail(tails[x], tails[x + 1])
         visited.append(tuple(tails[8]))
 solution_2 = len(set(visited))
 

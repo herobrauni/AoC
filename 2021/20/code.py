@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2021/20/example.txt", 'r') as f:
-with open(os.getcwd() + "/2021/20/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2021/20/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
 
@@ -47,12 +47,14 @@ def get_grid_binary(pic, x, y, filler):
     up_left = pic[x - 1][y - 1] if x > 0 and y > 0 else filler
     up_right = pic[x - 1][y + 1] if x > 0 and y < len(pic[0]) - 1 else filler
     down_left = pic[x + 1][y - 1] if x < len(pic) - 1 and y > 0 else filler
-    down_right = pic[x + 1][y +
-                            1] if x < len(pic) - 1 and y < len(pic[0]) - 1 else filler
+    down_right = (
+        pic[x + 1][y + 1] if x < len(pic) - 1 and y < len(pic[0]) - 1 else filler
+    )
     middle = pic[x][y]
-    bin_str = up_left + up + up_right + left + \
-        middle + right + down_left + down + down_right
-    return int("".join(['0' if x == "." else '1' for x in bin_str]), 2)
+    bin_str = (
+        up_left + up + up_right + left + middle + right + down_left + down + down_right
+    )
+    return int("".join(["0" if x == "." else "1" for x in bin_str]), 2)
 
 
 # for i in range(2):
@@ -65,8 +67,7 @@ for i in range(n):
     new_canvas = copy.deepcopy(pic)
     for j in range(len(pic)):
         for k in range(len(pic[0])):
-            new_canvas[j][k] = enhance[get_grid_binary(
-                pic, j, k, filler[i % 2])]
+            new_canvas[j][k] = enhance[get_grid_binary(pic, j, k, filler[i % 2])]
     pic = new_canvas
 
 

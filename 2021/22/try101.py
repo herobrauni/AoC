@@ -15,8 +15,8 @@ from scipy.spatial import ConvexHull
 
 solution_1, solution_2 = 0, 0
 
-with open(os.getcwd() + "/2021/22/example.txt", 'r') as f:
-    # with open(os.getcwd() + "/2021/22/input.txt", 'r') as f:
+with open(os.getcwd() + "/2021/22/example.txt", "r") as f:
+    # with open(os.getcwd() + "/AoC_private/2021/22/input.txt", 'r') as f:
     input = [line.strip() for line in f.readlines()]
 
 input_formated = []
@@ -43,20 +43,20 @@ for line in input_formated:
     # if line[0][0] < -50 or line[0][1] > 50 or line[1][0] < -50 or line[1][1] > 50 or line[2][0] < -50 or line[2][1] > 50:
     #     continue
     if line[3] == "on":
-        x_on.update(set(range(line[0][0], line[0][1]+1)))
-        y_on.update(set(range(line[1][0], line[1][1]+1)))
-        z_on.update(set(range(line[2][0], line[2][1]+1)))
+        x_on.update(set(range(line[0][0], line[0][1] + 1)))
+        y_on.update(set(range(line[1][0], line[1][1] + 1)))
+        z_on.update(set(range(line[2][0], line[2][1] + 1)))
     elif line[3] == "off":
         # x_on.difference_update(set(range(line[0][0], line[0][1]+1)))
         # y_on.difference_update(set(range(line[1][0], line[1][1]+1)))
         # z_on.difference_update(set(range(line[2][0], line[2][1]+1)))
-        x_on = x_on - set(range(line[0][0], line[0][1]+1))
-        y_on = y_on - set(range(line[1][0], line[1][1]+1))
-        z_on = z_on - set(range(line[2][0], line[2][1]+1))
+        x_on = x_on - set(range(line[0][0], line[0][1] + 1))
+        y_on = y_on - set(range(line[1][0], line[1][1] + 1))
+        z_on = z_on - set(range(line[2][0], line[2][1] + 1))
     # print(x_on, y_on, z_on)
 
 
-len(x_on)*len(y_on)*len(z_on)
+len(x_on) * len(y_on) * len(z_on)
 # len(z_on)
 
 

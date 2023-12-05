@@ -13,7 +13,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2015/12/example.txt", "r") as f:
-with open(os.getcwd() + "/2015/12/input.txt", "r") as f:
+with open(os.getcwd() + "/AoC_private/2015/12/input.txt", "r") as f:
     input = f.read()
 
 # PART 0

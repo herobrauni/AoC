@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 
 solution_1, solution_2 = 0, 0
 
-with open(os.getcwd() + "/2021/22/example.txt", 'r') as f:
-    # with open(os.getcwd() + "/2021/22/input.txt", 'r') as f:
+with open(os.getcwd() + "/2021/22/example.txt", "r") as f:
+    # with open(os.getcwd() + "/AoC_private/2021/22/input.txt", 'r') as f:
     input = [line.strip() for line in f.readlines()]
 
 # PART 0
@@ -46,7 +46,7 @@ def find_overlap(a, b):
 
 def calc_volume(a):
     # * (a[2][1] - a[2][0]+1)
-    return (a[0][1] - a[0][0] + 1)  # * (a[1][1] - a[1][0]+1)
+    return a[0][1] - a[0][0] + 1  # * (a[1][1] - a[1][0]+1)
 
 
 def combined_value(l):

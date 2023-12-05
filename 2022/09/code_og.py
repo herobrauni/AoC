@@ -13,7 +13,7 @@ import numpy as np
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/09/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/09/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/09/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -31,7 +31,7 @@ grid = []
 b = 1000
 x, y = 500, 500
 for i in range(b):
-    grid.append([0]*b)
+    grid.append([0] * b)
 s = np.array([x, y])
 h = np.array([x, y])
 t = np.array([x, y])
@@ -40,11 +40,11 @@ grid[x, y] = 1
 
 
 def move(h, t):
-    if round(np.linalg.norm(h-t)) > 1:
+    if round(np.linalg.norm(h - t)) > 1:
         if h[0] == t[0]:  # same x
-            t[1] = t[1] + 1 if h[1] > t[1] else t[1]-1
+            t[1] = t[1] + 1 if h[1] > t[1] else t[1] - 1
         elif h[1] == t[1]:  # same y
-            t[0] = t[0] + 1 if h[0] > t[0] else t[0]-1
+            t[0] = t[0] + 1 if h[0] > t[0] else t[0] - 1
         else:
             if h[0] > t[0] and h[1] > t[1]:  # up and right
                 t = np.add(t, [1, 1])
@@ -63,10 +63,14 @@ for line in input:
     distance = int(line.split()[1])
     for i in range(0, int(distance)):
         match direction:
-            case "R": j = np.array([1, 0])
-            case "L": j = np.array([-1, 0])
-            case "U": j = np.array([0, 1])
-            case "D": j = np.array([0, -1])
+            case "R":
+                j = np.array([1, 0])
+            case "L":
+                j = np.array([-1, 0])
+            case "U":
+                j = np.array([0, 1])
+            case "D":
+                j = np.array([0, -1])
         h = np.add(h, j)
         t = move(h, t)
         grid[t[0]][t[1]] = 1
@@ -78,19 +82,20 @@ grid = []
 b = 1000
 x, y = 500, 500
 for i in range(b):
-    grid.append([0]*b)
+    grid.append([0] * b)
 s = np.array([x, y])
 h = np.array([x, y])
-t1, t2, t3, t4, t5, t6, t7, t8, t9 = np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y]), np.array(
-    [x, y])
+t1, t2, t3, t4, t5, t6, t7, t8, t9 = (
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+    np.array([x, y]),
+)
 grid[x, y] = 1
 
 for line in input:
@@ -98,10 +103,14 @@ for line in input:
     distance = int(line.split()[1])
     for i in range(0, int(distance)):
         match direction:
-            case "R": j = np.array([1, 0])
-            case "L": j = np.array([-1, 0])
-            case "U": j = np.array([0, 1])
-            case "D": j = np.array([0, -1])
+            case "R":
+                j = np.array([1, 0])
+            case "L":
+                j = np.array([-1, 0])
+            case "U":
+                j = np.array([0, 1])
+            case "D":
+                j = np.array([0, -1])
         h = np.add(h, j)
         t1 = move(h, t1)
         t2 = move(t1, t2)

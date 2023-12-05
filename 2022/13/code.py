@@ -14,7 +14,7 @@ import itertools
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/13/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/13/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/13/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
     # input = []
@@ -72,12 +72,12 @@ def compare(a, b):
 
 
 # PART 1
-t = [[]]*len(input_p1)
+t = [[]] * len(input_p1)
 for i in range(len(input_p1)):
     t[i] = compare(input_p1[i][0], input_p1[i][1])
     print(t[i])
 
-solution_1 = sum([x+1 for x in range(len(t)) if t[x] == True])
+solution_1 = sum([x + 1 for x in range(len(t)) if t[x] == True])
 
 # PART 2
 dividers = [[[2]], [[6]]]
@@ -93,12 +93,12 @@ input_p2.append([[6]])
 temp_dir = {}
 while temp_dir != input_p2:
     temp_dir = copy.deepcopy(input_p2)
-    for i in range(len(input_p2)-1):
-        if compare(input_p2[i], input_p2[i+1]) is False:
-            t1, t2 = input_p2[i], input_p2[i+1]
-            input_p2[i], input_p2[i+1] = t2, t1
+    for i in range(len(input_p2) - 1):
+        if compare(input_p2[i], input_p2[i + 1]) is False:
+            t1, t2 = input_p2[i], input_p2[i + 1]
+            input_p2[i], input_p2[i + 1] = t2, t1
 
-solution_2 = math.prod([x+1 for x in range(len(input_p2)) if input_p2[x] in dividers])
+solution_2 = math.prod([x + 1 for x in range(len(input_p2)) if input_p2[x] in dividers])
 
 # SOLUTIONS
 

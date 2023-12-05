@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = [], []
 
 # with open(os.getcwd() + "/2022/05/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/05/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/05/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
     # input = []
@@ -35,8 +35,8 @@ test = [[], [], [], [], [], [], [], [], [], []]
 for line in stacks:
     for i in range(1, len(line), 4):
         if line[i] != " ":
-            print(i//4 + 1, line[i])
-            test[i//4+1].append(line[i])
+            print(i // 4 + 1, line[i])
+            test[i // 4 + 1].append(line[i])
 
 for line in test:
     line = line.reverse()
@@ -45,7 +45,7 @@ for line in test:
 test
 # PART 1
 for line in instructions:
-    line = line.split(' ')
+    line = line.split(" ")
     for i in range(0, int(line[1])):
         x = test[int(line[3])].pop()
         test[int(line[5])].append(x)
@@ -62,8 +62,8 @@ test = [[], [], [], [], [], [], [], [], [], []]
 for line in stacks:
     for i in range(1, len(line), 4):
         if line[i] != " ":
-            print(i//4 + 1, line[i])
-            test[i//4+1].append(line[i])
+            print(i // 4 + 1, line[i])
+            test[i // 4 + 1].append(line[i])
 
 for line in test:
     line = line.reverse()
@@ -72,7 +72,7 @@ for line in test:
 #     test[i] = str("".join(test[i]))
 
 for line in instructions:
-    line = line.split(' ')
+    line = line.split(" ")
     temp = []
     for i in range(0, int(line[1])):
         test[int(line[3])] = list(test[int(line[3])])

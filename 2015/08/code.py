@@ -13,7 +13,7 @@ import numpy as np
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2015/08/example.txt", "r") as f:
-with open(os.getcwd() + "/2015/08/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2015/08/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -40,9 +40,9 @@ solution_1 = literals - memory
 # PART 2
 reps = 0
 for line in input:
-    x = re.findall(r'\\|\"',line)
-    y = len(x)+len(line)+2
-    reps+=y
+    x = re.findall(r"\\|\"", line)
+    y = len(x) + len(line) + 2
+    reps += y
 
 solution_2 = reps - literals
 

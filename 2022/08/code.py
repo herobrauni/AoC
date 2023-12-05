@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/08/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/08/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/08/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     input = [list(x) for x in input]
@@ -33,7 +33,7 @@ print(input)
 for i in range(0, len(input)):
     for j in range(0, len(input[i])):
         input[i][j] = int(input[i][j])
-        if i == 0 or j == 0 or i == len(input)-1 or j == len(input[i])-1:
+        if i == 0 or j == 0 or i == len(input) - 1 or j == len(input[i]) - 1:
             # print(input[i][j])
             solution_1 += 1
             continue
@@ -41,7 +41,7 @@ for i in range(0, len(input)):
             # print(input[i], input[i][j])
             solution_1 += 1
             continue
-        elif input[i][j] > max([x[j] for x in input[i+1:]]):  # downwards
+        elif input[i][j] > max([x[j] for x in input[i + 1 :]]):  # downwards
             # print(input[i], input[i][j])
             solution_1 += 1
             continue
@@ -49,7 +49,7 @@ for i in range(0, len(input)):
             # print(input[i], input[i][j])
             solution_1 += 1
             continue
-        elif input[i][j] > max(input[i][j+1:]):  # right
+        elif input[i][j] > max(input[i][j + 1 :]):  # right
             # print(input[i], input[i][j])
             solution_1 += 1
             continue
@@ -58,13 +58,13 @@ for i in range(0, len(input)):
 ss = []
 for i in range(0, len(input)):
     for j in range(0, len(input[i])):
-        if i == 0 or j == 0 or i == len(input)-1 or j == len(input[i])-1:
+        if i == 0 or j == 0 or i == len(input) - 1 or j == len(input[i]) - 1:
             # print(input[i][j])
             continue
         upwards = [x[j] for x in input[:i]]
         temp = 0
         for y in range(len(upwards), 0, -1):
-            if upwards[y-1] < input[i][j]:
+            if upwards[y - 1] < input[i][j]:
                 temp += 1
             else:
                 temp += 1
@@ -73,13 +73,13 @@ for i in range(0, len(input)):
         left = input[i][:j]
         temp = 0
         for y in range(len(left), 0, -1):
-            if left[y-1] < input[i][j]:
+            if left[y - 1] < input[i][j]:
                 temp += 1
             else:
                 temp += 1
                 break
         ss.append(temp)
-        downwards = [x[j] for x in input[i+1:]]
+        downwards = [x[j] for x in input[i + 1 :]]
         temp = 0
         for y in range(0, len(downwards), 1):
             if downwards[y] < input[i][j]:
@@ -88,7 +88,7 @@ for i in range(0, len(input)):
                 temp += 1
                 break
         ss.append(temp)
-        right = input[i][j+1:]
+        right = input[i][j + 1 :]
         temp = 0
         for y in range(0, len(right), 1):
             if right[y] < input[i][j]:

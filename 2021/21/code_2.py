@@ -13,7 +13,7 @@ import itertools
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2021/21/example.txt", 'r') as f:
-with open(os.getcwd() + "/2021/21/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2021/21/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
 
@@ -58,7 +58,13 @@ def roll_1(player1, player2, score1, score2, perm, turn):
         score2 += player2
         if score2 >= 21:
             return 0
-    return sum([roll_1(player1, player2, score1, score2, x, (turn+1) % 2) * perms_counter[x] for x in keys])
+    return sum(
+        [
+            roll_1(player1, player2, score1, score2, x, (turn + 1) % 2)
+            * perms_counter[x]
+            for x in keys
+        ]
+    )
 
 
 def roll_2(player1, player2, score1, score2, perm, turn):
@@ -77,7 +83,13 @@ def roll_2(player1, player2, score1, score2, perm, turn):
         score2 += player2
         if score2 >= 21:
             return 1
-    return sum([roll_2(player1, player2, score1, score2, x, (turn+1) % 2) * perms_counter[x] for x in keys])
+    return sum(
+        [
+            roll_2(player1, player2, score1, score2, x, (turn + 1) % 2)
+            * perms_counter[x]
+            for x in keys
+        ]
+    )
 
 
 def walk(position, value):
@@ -91,10 +103,12 @@ def walk(position, value):
 #     58308639397748, 23142061611472, 20677802906690])
 
 winner = [0, 0]
-winner[0] = sum([roll_1(player1, player2, score1, score2, x, 0) * perms_counter[x]
-                 for x in keys])
-winner[1] = sum([roll_2(player1, player2, score1, score2, x, 0) * perms_counter[x]
-                 for x in keys])
+winner[0] = sum(
+    [roll_1(player1, player2, score1, score2, x, 0) * perms_counter[x] for x in keys]
+)
+winner[1] = sum(
+    [roll_2(player1, player2, score1, score2, x, 0) * perms_counter[x] for x in keys]
+)
 solution_2 = max(winner[0], winner[1])
 
 

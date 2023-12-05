@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/07/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/07/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/07/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -41,7 +41,7 @@ for i in range(0, len(input)):
         z = "-".join([str(x) for x in current])
         all[z] = []
         i += 1
-        while(input[i].split()[0] != "$"):
+        while input[i].split()[0] != "$":
             if input[i].split()[0].isdigit():
                 all[z].append(input[i].split()[0])
             elif input[i].split()[0] == "dir":
@@ -55,7 +55,9 @@ def calculate(l):
     if isinstance(l[0], list):
         return sum([calculate(x) for x in l])
     elif len([x for x in l if not x.isdigit()]):
-        return sum([int(x) for x in l if x.isdigit()]) + sum([calculate(all[x]) for x in l if not x.isdigit()])
+        return sum([int(x) for x in l if x.isdigit()]) + sum(
+            [calculate(all[x]) for x in l if not x.isdigit()]
+        )
     else:
         return sum([int(x) for x in l])
 

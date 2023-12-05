@@ -12,13 +12,14 @@ import itertools
 import itertools as it
 import numpy as np
 from datetime import datetime
+
 startTime = datetime.now()
 
 
 solution_1, solution_2 = 0, 0
 
-# with open(os.getcwd() + "/2021/19/example3.txt", 'r') as f:
-with open(os.getcwd() + "/2021/19/input.txt", 'r') as f:
+# with opeos.getcwd() + "/AoC_private/"/AoC_private/2021/19/example3.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2021/19/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
 
@@ -32,11 +33,11 @@ print(input)
 
 
 def distance(a, b):
-    return (np.linalg.norm(np.array(a)-np.array(b)))
+    return np.linalg.norm(np.array(a) - np.array(b))
 
 
 def distance_vector(a, b):
-    return np.array(a)-np.array(b)
+    return np.array(a) - np.array(b)
 
 
 def scalar(a, b):
@@ -44,19 +45,27 @@ def scalar(a, b):
 
 
 def manhattan(a, b):
-    return sum(abs(val1-val2) for val1, val2 in zip(a, b))
+    return sum(abs(val1 - val2) for val1, val2 in zip(a, b))
 
 
 def variations(vector, n):
-    ups = np.array([1, 1, 1]), np.array([1, 1, -1]), np.array([1, -1, 1]), np.array([1, -1, -1]
-                                                                                    ), np.array([-1, 1, 1]), np.array([-1, 1, -1]), np.array([-1, -1, 1]), np.array([-1, -1, -1])
+    ups = (
+        np.array([1, 1, 1]),
+        np.array([1, 1, -1]),
+        np.array([1, -1, 1]),
+        np.array([1, -1, -1]),
+        np.array([-1, 1, 1]),
+        np.array([-1, 1, -1]),
+        np.array([-1, -1, 1]),
+        np.array([-1, -1, -1]),
+    )
     orientations = list(itertools.permutations(vector, 3))
     for i in range(len(orientations)):
         orientations[i] = np.array(orientations[i])
     all_24 = []
     for b in orientations:
         for u in ups:
-            all_24.append(np.array(u*b))
+            all_24.append(np.array(u * b))
     return all_24[n]
 
 
@@ -96,12 +105,19 @@ def find_orientation(a, b):
     a_reduced = [a[x] for x in range(len(a)) if x in needed_keys_a]
     b_reduced = [b[x] for x in range(len(b)) if x in needed_keys_b]
     # print(f"a_red: {len(a_reduced)} / b_red: {len(b_reduced)}")
-    vecs_a_reduced = [distance_vector(a_reduced[x[0]], a_reduced[x[1]])
-                      for x in list(itertools.combinations(range(len(a_reduced)), 2))]
+    vecs_a_reduced = [
+        distance_vector(a_reduced[x[0]], a_reduced[x[1]])
+        for x in list(itertools.combinations(range(len(a_reduced)), 2))
+    ]
 
     test = []
     for n in range(48):
-        temp = ab2(vecs_a_reduced, b_reduced, n, list(itertools.combinations(range(len(b_reduced)), 2)))
+        temp = ab2(
+            vecs_a_reduced,
+            b_reduced,
+            n,
+            list(itertools.combinations(range(len(b_reduced)), 2)),
+        )
         c0 = list(itertools.combinations(range(len(a_reduced)), 2))
         c1 = list(itertools.combinations(range(len(b_reduced)), 2))
         # if len(temp) > test[1]:
@@ -115,12 +131,19 @@ def find_orientation(a, b):
                 if x[0] not in list(fuckthisdict.keys()):
                     fuckthisdict[x[0]] = set([])
                 fuckthisdict[x[0]].add(x[1])
-            if sum([1 if len(fuckthisdict[x]) > 1 else 0 for x in fuckthisdict]) == 0 and len(fuckthisdict) > 2:
+            if (
+                sum([1 if len(fuckthisdict[x]) > 1 else 0 for x in fuckthisdict]) == 0
+                and len(fuckthisdict) > 2
+            ):
                 dict_overlap = ab2(vecs_a, b, n, combs_b)
                 translate = []
                 for keys in dict_overlap:
-                    translate.append((combs_df[keys][0], combs_dt[dict_overlap[keys]][0]))
-                    translate.append((combs_df[keys][1], combs_dt[dict_overlap[keys]][1]))
+                    translate.append(
+                        (combs_df[keys][0], combs_dt[dict_overlap[keys]][0])
+                    )
+                    translate.append(
+                        (combs_df[keys][1], combs_dt[dict_overlap[keys]][1])
+                    )
                 translate = list(set(translate))
                 test.append([n, len(temp), translate])
     return test
@@ -128,14 +151,14 @@ def find_orientation(a, b):
 
 dfin, dtodo = {}, {}
 
-dfin['0'] = [np.array(x) for x in input[0]]
+dfin["0"] = [np.array(x) for x in input[0]]
 for i in range(1, len(input)):
     dtodo[str(i)] = input[i]
 
 tested_combs = set([])
 hitmarker = []
 scanners = {}
-scanners['0'] = np.array([0, 0, 0])
+scanners["0"] = np.array([0, 0, 0])
 lb = 66
 skip = set([])
 
@@ -153,8 +176,7 @@ while len(dfin) < len(input):
             if int(df) == int(dt):
                 continue
             combs_dt = list(itertools.combinations(range(len(dtodo[dt])), 2))
-            dist_dt = [distance(dtodo[dt][x[0]], dtodo[dt][x[1]])
-                       for x in combs_dt]
+            dist_dt = [distance(dtodo[dt][x[0]], dtodo[dt][x[1]]) for x in combs_dt]
             if sum([1 for x in dist_dt if x in dist_df]) < lb:
                 continue
             fo = find_orientation(dfin[df], dtodo[dt])
@@ -166,7 +188,9 @@ while len(dfin) < len(input):
             if len(translate) > 0:
                 print(f"HIT {dt}<->{df} on Variation {n} of Sensor {dt}")
                 temp_inp = [variations(y, n) for y in dtodo[dt]]
-                temp_scanner = np.array(dfin[df][translate[0][0]]) - temp_inp[translate[0][1]]
+                temp_scanner = (
+                    np.array(dfin[df][translate[0][0]]) - temp_inp[translate[0][1]]
+                )
                 scanners[dt] = temp_scanner
                 temp_inp = [y + temp_scanner for y in temp_inp]
                 dfin_temp[dt] = temp_inp

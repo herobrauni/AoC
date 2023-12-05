@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2022/04/example.txt", 'r') as f:
-with open(os.getcwd() + "/2022/04/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2022/04/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -30,8 +30,10 @@ print(input)
 # PART 1
 for line in input:
     a = line.split(",")[0].split("-")
-    b = line.split(',')[1].split("-")
-    if (int(a[0]) >= int(b[0]) and int(a[1]) <= int(b[1])) or (int(b[0]) >= int(a[0]) and int(b[1]) <= int(a[1])):
+    b = line.split(",")[1].split("-")
+    if (int(a[0]) >= int(b[0]) and int(a[1]) <= int(b[1])) or (
+        int(b[0]) >= int(a[0]) and int(b[1]) <= int(a[1])
+    ):
         # print(a, b)
         solution_1 += 1
 
@@ -40,13 +42,14 @@ for line in input:
 for line in input:
     a = line.split(",")[0].split("-")
     a = [int(x) for x in a]
-    b = line.split(',')[1].split("-")
+    b = line.split(",")[1].split("-")
     b = [int(x) for x in b]
-    if a[0] in range(b[0],
-                     b[1] + 1) or a[1] in range(b[0],
-                                                b[1] + 1) or b[0] in range(a[0],
-                                                                           a[1] + 1) or b[1] in range(a[0],
-                                                                                                      a[1] + 1):
+    if (
+        a[0] in range(b[0], b[1] + 1)
+        or a[1] in range(b[0], b[1] + 1)
+        or b[0] in range(a[0], a[1] + 1)
+        or b[1] in range(a[0], a[1] + 1)
+    ):
         # print(a, b)
         solution_2 += 1
 

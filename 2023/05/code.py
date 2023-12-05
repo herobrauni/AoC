@@ -13,7 +13,7 @@ import numpy as np
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "/2023/05/example.txt", "r") as f:
-with open(os.getcwd() + "/2023/05/input.txt", "r") as f:
+with open(os.getcwd() + "/AoC_private/2023/05/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
     # input = []
@@ -82,7 +82,7 @@ p2_map = dict(reversed(maps.items()))
 for x in p2_map:
     p2_map[x] = {v: k for k, v in p2_map[x].items()}
 
-for seed in range(11627841,237692106):
+for seed in range(11627841, 237692106):
     seed_og = seed
 
     for y in p2_map:
@@ -95,7 +95,7 @@ for seed in range(11627841,237692106):
     if [True for x in seed_ranges if seed in x]:
         solution_2 = seed_og
         break
-    if seed_og%100000 ==0:
+    if seed_og % 100000 == 0:
         print(seed_og)
 
 # locations.sort()
