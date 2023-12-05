@@ -1,0 +1,3 @@
+[submodule "AoC_private"]
+	path = ./
+	url = https://github.com/herobrauni/AoC_private
