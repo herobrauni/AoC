@@ -104,7 +104,7 @@ for y in years:
                 + str(y)
                 + "/day/"
                 + str(d)
-                + '"\n\nimport re\nfrom collections import Counter\nimport copy\nimport os\nimport math\nimport numpy as np\n\nsolution_1, solution_2=0, 0\n\n  # with open(os.getcwd() + "/'
+                + '"\n\nimport re\nfrom collections import Counter\nimport copy\nimport os\nimport math\n\nsolution_1, solution_2=0, 0\n\n  # with open(os.getcwd() + "/'
                 + str(y)
                 + "/"
                 + day_string
