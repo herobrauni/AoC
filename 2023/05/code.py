@@ -8,31 +8,23 @@ from collections import Counter
 import copy
 import os
 import math
-import numpy as np
 
-solution_1, solution_2 = 0, 0
+
+solution_1, solution_2 = 99999999999999999, 0
 
 # with open(os.getcwd() + "/2023/05/example.txt", "r") as f:
 with open(os.getcwd() + "/AoC_private/2023/05/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
-    # input = []
-    # for line in f.readlines():
-    # input.append(int(line))
-    # input = [int(line) for line in f.readlines()]
-# input = [line for line in f.readlines()]
+
 
 # PART 0
 
-
-print(input)
+# print(input)
 
 
 # PART 1
-seeds = [int(x) for x in re.findall("\d+", input[0])]
-# destination source range
-#   50          98      2
-#   52          50      48
+seeds = [int(x) for x in re.findall(r"\d+", input[0])]
 tmp = input[1].split("\n")[1:]
 maps = {
     key: {}
@@ -53,7 +45,6 @@ for c, z in enumerate(maps):
         dest, source, ran = [int(y) for y in x.split()]
         maps[z][range(source, source + ran)] = range(dest, dest + ran)
 
-locations = []
 for seed in seeds:
     seed_og = seed
     for y in maps:
@@ -63,45 +54,40 @@ for seed in seeds:
                 break
         # print(y, seed_og, seed)
     # print(seed_og, seed)
-    locations.append(seed)
-
-locations.sort()
-solution_1 = locations[0]
+    solution_1 = seed if seed < solution_1 else solution_1
 
 
 # PART 2
-test = []
 seed_ranges = [
     range(seeds[x], seeds[x] + seeds[x + 1]) for x in range(0, len(seeds), 2)
 ]
-# for s in maps["humidity_to_location"]:
-#     for i in maps["humidity_to_location"][s]:
-#         test.append(i)
 
+# reverse the maps (so location first)
 p2_map = dict(reversed(maps.items()))
+# switch keys and values (because we reversed the maps)
 for x in p2_map:
     p2_map[x] = {v: k for k, v in p2_map[x].items()}
 
-for seed in range(11627841, 237692106):
-    seed_og = seed
-
+location = 0
+found_seed = False
+while True:
+    seed = location
     for y in p2_map:
         for s in p2_map[y]:
             if seed in s:
                 seed = seed - s[0] + p2_map[y][s][0]
                 break
-        # print(y, seed_og, seed)
-    # print(seed_og, seed)
-    if [True for x in seed_ranges if seed in x]:
-        solution_2 = seed_og
+    # Count backwards if we found any location that relates to a seed
+    if any(seed in x for x in seed_ranges):
+        location -= 1
+        found_seed = True
+    # Count forward and overshoot the seed until we found one that exists
+    elif not found_seed:
+        location += 10000
+    else:
         break
-    if seed_og % 100000 == 0:
-        print(seed_og)
 
-# locations.sort()
-# solution_2 = locations[0]
-
-
+solution_2 = location + 1
 # SOLUTIONS
 
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))
