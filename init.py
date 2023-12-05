@@ -11,7 +11,7 @@ import os
 
 base_pos = "./"
 # Get your session by inspecting the session cookie content in your web browser while connected to adventofcode and paste it here as plain text in between the ". Leave at is to not download inputs.
-with open(os.getcwd() + "/session.txt", "r") as f:
+with open(os.getcwd() + "\\AoC_private\\session.txt", "r") as f:
     USER_SESSION_ID = f.read()
 # Set to false to not download statements. Note that only part one is downloaded (since you need to complete it to access part two)
 DOWNLOAD_STATEMENTS = True
@@ -19,8 +19,12 @@ DOWNLOAD_STATEMENTS = True
 DOWNLOAD_INPUTS = True
 # Set to false to not make code templates. Note that even if OVERWRITE is set to True, it will never overwrite codes.
 MAKE_CODE_TEMPLATE = True
+# Set to false to not make code templates. Note that even if OVERWRITE is set to True, it will never overwrite examples.
+MAKE_EXAMPLE = True
 # Set to false to not create a direct url link in the folder.
 MAKE_URL = True
+# Set to false if you don't want the URL to open
+OPEN_URL = True
 author = "brauni"  # Name automatically put in the code templates.
 # If you really need to download the whole thing again, set this to true. As the creator said, AoC is fragile; please be gentle. Statements and Inputs do not change. This will not overwrite codes.
 OVERWRITE = False
@@ -28,12 +32,14 @@ OVERWRITE = False
 # DATE SPECIFIC PARAMETERS
 # Date automatically put in the code templates.
 date = dt.today().strftime("%Y-%m-%d")
-starting_advent_of_code_year = 2023  # You can go as early as 2015.
+starting_advent_of_code_year = dt.today().year  # You can go as early as 2015.
+# starting_advent_of_code_year = 2017  # You can go as early as 2015.
 # The setup will download all advent of code data up until that date included
 last_advent_of_code_year = dt.today().year
-# last_advent_of_code_year = 2015
+# last_advent_of_code_year = 2023
 # If the year isn't finished, the setup will download days up until that day included for the last year
 last_advent_of_code_day = dt.today().day
+# last_advent_of_code_day = 2
 # Imports
 try:
     import requests
@@ -59,6 +65,8 @@ for y in years:
     print("Year " + str(y))
     if not os.path.exists(base_pos + str(y)):
         os.mkdir(base_pos + str(y))
+    if not os.path.exists(base_pos + "/AoC_private/" + str(y)):
+        os.mkdir(base_pos + "/AoC_private/" + str(y))
     year_pos = base_pos + str(y)
     for d in (
         d
@@ -67,9 +75,20 @@ for y in years:
     ):
         day_string = str(d) if d > 9 else "0" + str(d)
         print("    Day " + str(day_string))
-        if not os.path.exists(year_pos + "/" + str(day_string)):
-            os.mkdir(year_pos + "/" + str(day_string))
         day_pos = year_pos + "/" + str(day_string)
+        day_pos_private = "./AoC_private/" + str(y) + "/" + str(day_string)
+        if not os.path.exists(day_pos) and True in [
+            MAKE_CODE_TEMPLATE,
+            MAKE_EXAMPLE,
+            MAKE_URL,
+        ]:
+            os.mkdir(day_pos)
+        if not os.path.exists(day_pos_private) and True in [
+            DOWNLOAD_INPUTS,
+            DOWNLOAD_STATEMENTS,
+        ]:
+            os.mkdir(day_pos_private)
+        # print(day_pos)
         if MAKE_CODE_TEMPLATE and not os.path.exists(day_pos + "/code.py"):
             code = open(day_pos + "/code.py", "w+")
             code.write(
@@ -89,7 +108,7 @@ for y in years:
                 + str(y)
                 + "/"
                 + day_string
-                + "/example.txt\", 'r') as f:\nwith open(os.getcwd() + \"/"
+                + "/example.txt\", 'r') as f:\nwith open(os.getcwd() + \"/AoC_private/"
                 + str(y)
                 + "/"
                 + day_string
@@ -99,7 +118,7 @@ for y in years:
             os.startfile(os.getcwd() + "\\" + str(y) + "\\" + day_string + "\\code.py")
         if (
             DOWNLOAD_INPUTS
-            and (not os.path.exists(day_pos + "/input.txt") or OVERWRITE)
+            and (not os.path.exists(day_pos_private + "/input.txt") or OVERWRITE)
             and USER_SESSION_ID != ""
         ):
             done = False
@@ -113,7 +132,7 @@ for y in years:
                     ) as response:
                         if response.ok:
                             data = response.text
-                            input = open(day_pos + "/input.txt", "w+")
+                            input = open(day_pos_private + "/input.txt", "w+")
                             input.write(data.rstrip("\n"))
                             input.close()
                         else:
@@ -137,7 +156,7 @@ for y in years:
                     )
                     done = True
         if DOWNLOAD_STATEMENTS and (
-            not os.path.exists(day_pos + "/statement.html") or OVERWRITE
+            not os.path.exists(day_pos_private + "/statement.html") or OVERWRITE
         ):
             done = False
             error_count = 0
@@ -153,7 +172,7 @@ for y in years:
                             start = html.find("<article")
                             end = html.rfind("</article>") + len("</article>")
                             end_success = html.rfind("</code>") + len("</code>")
-                            statement = open(day_pos + "/statement.html", "w+")
+                            statement = open(day_pos_private + "/statement.html", "w+")
                             statement.write(html[start : max(end, end_success)])
                             statement.close()
                         done = True
@@ -180,8 +199,9 @@ for y in years:
                 "[InternetShortcut]\nURL=" + link + str(y) + "/day/" + str(d) + "\n"
             )
             url.close()
-            os.startfile(link + str(y) + "/day/" + str(d))
-        if not os.path.exists(day_pos + "/example.txt") or OVERWRITE:
+            if OPEN_URL:
+                os.startfile(link + str(y) + "/day/" + str(d))
+        if MAKE_EXAMPLE and not os.path.exists(day_pos + "/example.txt"):
             example = open(day_pos + "/example.txt", "w+")
             example.write("")
             example.close()
