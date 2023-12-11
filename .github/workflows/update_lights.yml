@@ -13,4 +13,4 @@ jobs:
         username: ${{ secrets.USERNAME_ZERO }}
         key: ${{ secrets.PRIVATEKEY_ZERO }}
         port: ${{ secrets.PORT_ZERO }}
-        script: python3 ~/lights/update_lights.py ${{ secrets.AOC_SESSION }} ${{ secrets.USERNAME_AOC }} ${{ secrets.USERNAME_AOC }}
+        script: sudo python3 ~/lights/update_lights.py ${{ secrets.AOC_SESSION }} ${{ secrets.USERNAME_AOC }} ${{ secrets.USERNAME_AOC }}
