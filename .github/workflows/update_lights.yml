@@ -8,14 +8,9 @@ jobs:
     steps:
     - name: executing remote ssh commands using sshkey
       uses: appleboy/ssh-action@v1.0.0
-      env:
-        AOC_SESSION: ${{ secrets.AOC_SESSION }}
-        USERNAME_AOC: ${{ secrets.USERNAME_AOC }}
-        LEADERBOARD_ID_AOC: ${{ secrets.LEADERBOARD_ID_AOC }}
       with:
         host: ${{ secrets.HOST_ZERO }}
         username: ${{ secrets.USERNAME_ZERO }}
         key: ${{ secrets.PRIVATEKEY_ZERO }}
         port: ${{ secrets.PORT_ZERO }}
-        envs: AOC_SESSION,USERNAME_AOC,LEADERBOARD_ID_AOC
-        script: sudo python3 ~/lights/update_lights.py $AOC_SESSION $USERNAME_AOC $LEADERBOARD_ID_AOC
+        script: sudo python3 ~/AoC/AoC_private/update_lights.py herobrauni
