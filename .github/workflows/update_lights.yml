@@ -9,7 +9,7 @@ jobs:
     - name: executing remote ssh commands using sshkey
       uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.HOST }}
+        host: ${{ secrets.HOST_ZERO }}
         username: ${{ secrets.USERNAME_ZERO }}
         key: ${{ secrets.PRIVATEKEY_ZERO }}
         port: ${{ secrets.PORT_ZERO }}
