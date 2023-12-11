@@ -13,4 +13,7 @@ jobs:
         username: ${{ secrets.USERNAME_ZERO }}
         key: ${{ secrets.PRIVATEKEY_ZERO }}
         port: ${{ secrets.PORT_ZERO }}
-        script: sudo python3 ~/AoC/AoC_private/update_lights.py herobrauni
+        script: |
+            cd ~/AoC/AoC_private
+            git pull
+            sudo python3 ~/AoC/AoC_private/update_lights.py herobrauni
