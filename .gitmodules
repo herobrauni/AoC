@@ -1,4 +1,4 @@
 [submodule "AoC_private"]
 	path = AoC_private
-	url = https://github.com/herobrauni/AoC_private
+	url = git@github.com:herobrauni/AoC_private.git
     branch = main
