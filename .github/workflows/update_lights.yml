@@ -15,5 +15,6 @@ jobs:
         port: ${{ secrets.PORT_ZERO }}
         script: |
             cd ~/AoC/AoC_private
+            git checkout main
             git pull
             sudo python3 ~/AoC/AoC_private/update_lights.py herobrauni
