@@ -1,0 +1,15 @@
+%ft -> qn, cm
+broadcaster -> ct, hr, ft, qm
+&cm -> jp, sk, ft, dt, gb
+%qn -> cm, sk
+%ft -> qn, cm
+%bd -> lg, cm
+&cm -> jp, sk, ft, dt, gb
+%lg -> cm
+%qd -> jp, cm
+%rp -> bk, cm
+%pc -> cm, xl
+%xl -> cm, gb
+%bk -> bd, cm
+%ft -> qn, cm
+%qn -> cm, sk
