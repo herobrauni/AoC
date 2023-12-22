@@ -134,7 +134,7 @@ for x in p2:
         i += 1
     p2[x] = i
 
-solution_2 = math.prod(p2.values())
+solution_2 = math.lcm(*p2.values())
 
 # SOLUTIONS
 
