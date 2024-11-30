@@ -16,6 +16,8 @@ def main [day?: string, year?: string] = {
     # user agent for no abuse and session for auth
     $env.AOC_USER_AGENT = "aoc@brauni.dev"
     $env.AOC_SESSION = (open ./AoC_private/session.txt)
+    mkdir $"./($year)/($day_for_folder)"
+    mkdir $"./AoC_private/($year)/($day_for_folder)"
     # aocd module (pip install advent-of-code-data) to get and cache inputs etc.
     aocd $day $year | str trim -r | save $"./AoC_private/($year)/($day_for_folder)/input.txt" -f
     aocd $day $year --example | str trim -r | save $"./($year)/($day_for_folder)/example.txt" -f
@@ -35,8 +37,12 @@ def main [day?: string, year?: string] = {
 
     # create link url
     $"[InternetShortcut]\nURL=https://adventofcode.com/($year)/day/($day)\n" | save $"./($year)/($day_for_folder)/link.url" -f
-    ^$env.BROWSER $"https://adventofcode.com/($year)/day/($day)"
-
+    
     # create code template
-    ^python make_code.py $day_for_folder $year
+    ^python make_code.py $day $year
+    # open template
+    ^code $"./($year)/($day_for_folder)/code.py"
+
+    # open browser with todays site
+    ^$env.BROWSER $"https://adventofcode.com/($year)/day/($day)"
 }

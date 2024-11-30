@@ -1,16 +1,16 @@
-# Advent of Code Year $year Day $day solution
+# Advent of Code Year 2019 Day 1 solution
 # Author = brauni
-# Date = $year-12-$day_for_folder
+# Date = 2019-12-01
 
 import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
-puzzle = Puzzle(year=$year, day=$day)
+puzzle = Puzzle(year=2019, day=1)
 
 
-# with open(os.getcwd() + "/$year/$day_for_folder/example.txt", 'r') as f:
-with open(os.getcwd() + "/$year/$day_for_folder/input.txt", 'r') as f:
+# with open(os.getcwd() + "/2019/01/example.txt", 'r') as f:
+with open(os.getcwd() + "/2019/01/input.txt", 'r') as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
@@ -33,11 +33,13 @@ print(input)
 # SOLUTIONS
 
 print("Part One : " + str(solution_1))
+
 """
-submit(solution_1, part="a", day=$day, year=$year)
+submit("10", part="a", day=1, year=2019)
 """
 
 print("Part Two : " + str(solution_2))
+
 """
-submit(solution_2, part="b", day=$day, year=$year)
+submit(solution_2, part="b", day=1, year=2019)
 """
