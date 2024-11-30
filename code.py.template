@@ -1,0 +1,42 @@
+# Advent of Code Year $year Day $day solution
+# Author = brauni
+# Date = $year-12-$day
+
+import re
+import os
+from aocd import data
+from aocd import submit
+from aocd.models import Puzzle
+
+# with open(os.getcwd() + "/$year/$day/example.txt", 'r') as f:
+with open(os.getcwd() + "/$year/$day/input.txt", 'r') as f:
+    # input = f.read()
+    # input = input.split("\n")
+    # input = []
+    # for line in f.readlines():
+    # input.append(int(line))
+    # input = [int(line) for line in f.readlines()]
+    input = [line for line in f.readlines()]
+
+"""
+print(input)
+"""
+
+
+# PART 1
+
+
+# PART 2
+
+
+# SOLUTIONS
+
+print("Part One : " + str(solution_1))
+"""
+submit(solution_1, part="a", day=$day, year=$year)
+"""
+
+print("Part Two : " + str(solution_2))
+"""
+submit(solution_2, part="b", day=$day, year=$year)
+"""
