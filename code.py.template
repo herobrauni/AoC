@@ -10,34 +10,30 @@ puzzle = Puzzle(year=$year, day=$day)
 
 
 # with open(os.getcwd() + "/$year/$day_for_folder/example.txt", 'r') as f:
-with open(os.getcwd() + "/$year/$day_for_folder/input.txt", 'r') as f:
-    # input = f.read()
-    # input = input.split("\n")
+with open(os.getcwd() + "/AoC_private/$year/$day_for_folder/input.txt", 'r') as f:
+    input = f.read()
+    input = input.split("\n")
     # input = []
     # for line in f.readlines():
     # input.append(int(line))
     # input = [int(line) for line in f.readlines()]
-    input = [line for line in f.readlines()]
+    # input = [line for line in f.readlines()]
 
-"""
 print(input)
-"""
-
 
 # PART 1
-
+solution_1 = 0
 
 # PART 2
-
+solution_2 = 0
 
 # SOLUTIONS
 
 print("Part One : " + str(solution_1))
-"""
+
 submit(solution_1, part="a", day=$day, year=$year)
-"""
+
 
 print("Part Two : " + str(solution_2))
-"""
+
 submit(solution_2, part="b", day=$day, year=$year)
-"""

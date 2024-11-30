@@ -18,5 +18,6 @@ template = string.Template(template_text)
 result = template.substitute(data)
 
 
-with open(os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py", "w") as f:
-    f.write(result)
+if not os.path.exists(os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py"):
+    with open(os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py", "w") as f:
+        f.write(result)
