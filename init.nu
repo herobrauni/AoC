@@ -11,6 +11,10 @@ def main [day?: string, year?: string] = {
         null => { date now | format date %Y }
         _ => $year     
     }
+    if $day not-in 1..25 {
+        print "fuck you - day not in range"
+        exit
+    }
     # add leading 0 for better folder structure
     let day_for_folder = if ($day | into int)  < 10 { ['0', $day] | str join } else { $day }
     # user agent for no abuse and session for auth
@@ -33,7 +37,7 @@ def main [day?: string, year?: string] = {
     let end = ($site | str index-of -e "</article>") + ('</article>' | str length )
     let end_success = ($site | str index-of -e "</code>") + ('</code>' | str length )
     let eend = if $end_success != null { [$end | $end_success] | math max } else { $end }
-    $site | str substring $start..$eend | save $"./AoC_private/($year)/($day_for_folder)/statement.html" -f
+    $site | str substring $start..$eend | str trim -r | save $"./AoC_private/($year)/($day_for_folder)/statement.html" -f
 
     # create link url
     $"[InternetShortcut]\nURL=https://adventofcode.com/($year)/day/($day)\n" | save $"./($year)/($day_for_folder)/link.url" -f
