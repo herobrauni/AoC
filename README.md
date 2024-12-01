@@ -1,6 +1,6 @@
 # AoC
 
-[Advent of Code 2023](https://adventofcode.com)
+[Advent of Code 2024](https://adventofcode.com)
 
 
 <!--- advent_readme_stars table --->
