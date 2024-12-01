@@ -26,7 +26,8 @@
 		"cp": "cp ./AoC_private/session.txt ~/.config/aocd/token"
 	},
 	"mounts": [
-		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+		"source=/etc/localtime,target=/usr/share/zoneinfo/hostlocaltime,type=bind,readonly"
 	],
 	"customizations": {
 		// Add the IDs of extensions you want installed when the container is created.

@@ -5,8 +5,9 @@ def main [day?: string, year?: string] = {
     # if empty get current day / year
     let day = match $day {
         null => { date now | format date %d }
-        _ => { $day | into int }
+        _ => $day 
     }
+    let day = $day | into int
     let year = match $year {
         null => { date now | format date %Y }
         _ => $year     
