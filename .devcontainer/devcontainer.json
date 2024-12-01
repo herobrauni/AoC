@@ -22,8 +22,7 @@
 	// 	"regs": "pip install --user -r requirements.txt"
 	// },
 	"postStartCommand": {
-		"mkdir": "mkdir -p ~/.config/aocd",
-		"cp": "cp ./AoC_private/session.txt ~/.config/aocd/token"
+		"mkdir": "mkdir -p ~/.config/aocd && cp ./AoC_private/session.txt ~/.config/aocd/token"
 	},
 	"mounts": [
 		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",

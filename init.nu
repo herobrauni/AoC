@@ -46,7 +46,7 @@ def main [day?: string, year?: string] = {
     # create code template
     ^python make_code.py $day $year
     # open template
-    ^code $"./($year)/($day_for_folder)/code.py"
+    ^code $"./($year)/($day_for_folder)/code.py" $"./AoC_private/($year)/($day_for_folder)/input"
 
     # open browser with todays site
     ^$env.BROWSER $"https://adventofcode.com/($year)/day/($day)"
