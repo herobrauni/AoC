@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\12\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\12\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\12\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -52,7 +52,11 @@ for y in range(25):
     for i in range(len(lines)):
         visited = [x for x in lines[i] if x.islower()]
         for j in paths[lines[i][-1]]:
-            if j not in visited and lines[i][-1] != "end" and lines[i] + [j] not in lines:
+            if (
+                j not in visited
+                and lines[i][-1] != "end"
+                and lines[i] + [j] not in lines
+            ):
                 lines.append(lines[i] + [j])
 
 

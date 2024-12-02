@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\10\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\10\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\10\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -38,9 +38,9 @@ for line in input:
     x = []
     for i in line:
         c += 1
-        if re.match(r'\<|\(|\[|\{', i):
+        if re.match(r"\<|\(|\[|\{", i):
             x.append(i)
-        elif re.match(r'\)|\}|\]|\>', i):
+        elif re.match(r"\)|\}|\]|\>", i):
             if i == brackets[x[-1]]:
                 # print("match", i, x[-1])
                 temp = x.pop(len(x) - 1)
@@ -65,9 +65,9 @@ for line in input:
     x = []
     for i in line:
         c += 1
-        if re.match(r'\<|\(|\[|\{', i):
+        if re.match(r"\<|\(|\[|\{", i):
             x.append(i)
-        elif re.match(r'\)|\}|\]|\>', i):
+        elif re.match(r"\)|\}|\]|\>", i):
             if i == brackets[x[-1]]:
                 # print("match", i, x[-1])
                 temp = x.pop(len(x) - 1)
@@ -80,12 +80,12 @@ s = []
 for i in missing_brackets:
     score = 0
     for j in i:
-        score = score*5 + scores[j]
+        score = score * 5 + scores[j]
     s.append(score)
 
 
 s.sort()
-solution_2 = s[len(s)//2]
+solution_2 = s[len(s) // 2]
 
 # SOLUTIONS
 

@@ -30,7 +30,7 @@ print(input)
 
 # PART 1
 for x in input:
-    numbers = re.findall(r'\d', x)
+    numbers = re.findall(r"\d", x)
     solution_1 += int(str(numbers[0]) + str(numbers[-1]))
 
 

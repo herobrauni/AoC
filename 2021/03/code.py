@@ -10,7 +10,7 @@ import re
 
 
 # with open(os.getcwd() + "\\2021\\03\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\03\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\03\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -33,7 +33,7 @@ gamma, epsilon = "", ""
 # loop through all columns of the input
 for i in range(len(input[0])):
     # if the sum of all elements (0|1) in the column is bigger than half the number of rows -> common number is 1
-    if ((sum([int(row[i]) for row in input])) > len(input) / 2):
+    if (sum([int(row[i]) for row in input])) > len(input) / 2:
         gamma += "1"
         epsilon += "0"
     # if the sum of all elements (0|1) in the column is smaller than half the number of rows -> common number is 0
@@ -56,10 +56,10 @@ for i in range(len(temp[0])):
     # set common to 0 for cases where the sum of all elements (0|1) in the column is equal to half the number of rows
     common = 1
     # if the sum of all elements (0|1) in the column is bigger than half the number of rows set common to 0
-    if ((sum([int(row[i]) for row in temp])) > len(temp) / 2):
+    if (sum([int(row[i]) for row in temp])) > len(temp) / 2:
         common = "1"
     # if the sum of all elements (0|1) in the column is smaller than half the number of rows set common to 1
-    elif ((sum([int(row[i]) for row in temp])) < len(temp) / 2):
+    elif (sum([int(row[i]) for row in temp])) < len(temp) / 2:
         common = "0"
     # loop through all remaining rows of the input
     for line in temp:
@@ -89,10 +89,10 @@ for i in range(len(temp[0])):
     # set common to 1 for cases where the sum of all elements (0|1) in the column is equal to half the number of rows
     common = 1
     # if the sum of all elements (0|1) in the column is bigger than half the number of rows set common to 1
-    if ((sum([int(row[i]) for row in temp])) > len(temp) / 2):
+    if (sum([int(row[i]) for row in temp])) > len(temp) / 2:
         common = "1"
     # if the sum of all elements (0|1) in the column is smaller than half the number of rows set common to 0
-    elif ((sum([int(row[i]) for row in temp])) < len(temp) / 2):
+    elif (sum([int(row[i]) for row in temp])) < len(temp) / 2:
         common = "0"
     # loop through all remaining rows of the input
     for line in temp:

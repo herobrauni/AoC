@@ -5,13 +5,13 @@ import re
 import os
 
 # with open(os.getcwd() + "\\2020\\07\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2020\\07\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\07\\input.txt", "r") as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
     # for line in f.readlines():
     # input.append(int(line))
-    #input = [int(line) for line in f.readlines()]
+    # input = [int(line) for line in f.readlines()]
     input = [line for line in f.readlines()]
 
 """
@@ -35,8 +35,8 @@ for i in range(len(temp_input)):
     # print(input[i])
 for l in temp_input:
     for m in range(len(l)):
-        if (m > 0 and "no other" not in l[m]):
-            if (l[m] not in dic):
+        if m > 0 and "no other" not in l[m]:
+            if l[m] not in dic:
                 dic[str(l[m])] = []
             dic[str(l[m])].append(l[0])
 
@@ -72,8 +72,8 @@ for i in range(len(input)):
     # print(input[i])
 for l in input:
     for m in range(len(l)):
-        if (m > 0 and "no other" not in l[m]):
-            if (l[0] not in dic):
+        if m > 0 and "no other" not in l[m]:
+            if l[0] not in dic:
                 dic[str(l[0])] = []
             dic[str(l[0])].append(l[m])
 
@@ -90,7 +90,7 @@ def find_2(color):
             z = int(x[0])
             pew = re.split(r"\d ", x)
             bla = find_2(pew[1])
-            if (bla is None):
+            if bla is None:
                 bla = z
                 # print(z)
             else:

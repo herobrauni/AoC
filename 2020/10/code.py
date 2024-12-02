@@ -7,7 +7,7 @@ import os
 
 
 # with open(os.getcwd() + "\\2020\\10\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2020\\10\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\10\\input.txt", "r") as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []

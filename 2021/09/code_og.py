@@ -11,7 +11,7 @@ import os
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\09\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\09\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\09\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -36,43 +36,64 @@ for i in range(len(inp)):
     if i == 0:
         for j in range(len(inp[i])):
             if j == 0:
-                if inp[i][j] < inp[i+1][j] and inp[i][j] < inp[i][j+1]:
+                if inp[i][j] < inp[i + 1][j] and inp[i][j] < inp[i][j + 1]:
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
-            elif j == len(inp[i])-1:
-                if inp[i][j] < inp[i+1][j] and inp[i][j] < inp[i][j-1]:
+            elif j == len(inp[i]) - 1:
+                if inp[i][j] < inp[i + 1][j] and inp[i][j] < inp[i][j - 1]:
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
             else:
-                if inp[i][j] < inp[i+1][j] and inp[i][j] < inp[i][j-1] and inp[i][j] < inp[i][j+1]:
+                if (
+                    inp[i][j] < inp[i + 1][j]
+                    and inp[i][j] < inp[i][j - 1]
+                    and inp[i][j] < inp[i][j + 1]
+                ):
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
-    elif i == len(inp)-1:
+    elif i == len(inp) - 1:
         for j in range(len(inp[i])):
             if j == 0:
-                if inp[i][j] < inp[i-1][j] and inp[i][j] < inp[i][j+1]:
+                if inp[i][j] < inp[i - 1][j] and inp[i][j] < inp[i][j + 1]:
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
-            elif j == len(inp[i])-1:
-                if inp[i][j] < inp[i-1][j] and inp[i][j] < inp[i][j-1]:
+            elif j == len(inp[i]) - 1:
+                if inp[i][j] < inp[i - 1][j] and inp[i][j] < inp[i][j - 1]:
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
             else:
-                if inp[i][j] < inp[i-1][j] and inp[i][j] < inp[i][j-1] and inp[i][j] < inp[i][j+1]:
+                if (
+                    inp[i][j] < inp[i - 1][j]
+                    and inp[i][j] < inp[i][j - 1]
+                    and inp[i][j] < inp[i][j + 1]
+                ):
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
     else:
         for j in range(len(inp[i])):
             if j == 0:
-                if inp[i][j] < inp[i-1][j] and inp[i][j] < inp[i][j+1] and inp[i][j] < inp[i+1][j]:
+                if (
+                    inp[i][j] < inp[i - 1][j]
+                    and inp[i][j] < inp[i][j + 1]
+                    and inp[i][j] < inp[i + 1][j]
+                ):
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
-            elif j == len(inp[i])-1:
-                if inp[i][j] < inp[i-1][j] and inp[i][j] < inp[i][j-1] and inp[i][j] < inp[i+1][j]:
+            elif j == len(inp[i]) - 1:
+                if (
+                    inp[i][j] < inp[i - 1][j]
+                    and inp[i][j] < inp[i][j - 1]
+                    and inp[i][j] < inp[i + 1][j]
+                ):
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
             else:
-                if inp[i][j] < inp[i-1][j] and inp[i][j] < inp[i][j-1] and inp[i][j] < inp[i][j+1] and inp[i][j] < inp[i+1][j]:
+                if (
+                    inp[i][j] < inp[i - 1][j]
+                    and inp[i][j] < inp[i][j - 1]
+                    and inp[i][j] < inp[i][j + 1]
+                    and inp[i][j] < inp[i + 1][j]
+                ):
                     lowpoints.append(inp[i][j])
                     lowpoint_coordinates.append([i, j])
 
@@ -97,16 +118,22 @@ def check_neighbours(inp, i, j):
         return 0
     else:
         inp[i][j] = 9
-    return 1 + check_neighbours(inp, i-1, j) + check_neighbours(inp, i+1, j) + check_neighbours(inp, i, j-1) + check_neighbours(inp, i, j+1)
+    return (
+        1
+        + check_neighbours(inp, i - 1, j)
+        + check_neighbours(inp, i + 1, j)
+        + check_neighbours(inp, i, j - 1)
+        + check_neighbours(inp, i, j + 1)
+    )
 
 
 clusters = []
 for coord in lowpoint_coordinates:
-    clusters.append(check_neighbours(test, coord[0]+1, coord[1]+1))
+    clusters.append(check_neighbours(test, coord[0] + 1, coord[1] + 1))
 
 clusters.sort(reverse=True)
 
-solution_2 = clusters[0]*clusters[1]*clusters[2]
+solution_2 = clusters[0] * clusters[1] * clusters[2]
 
 # SOLUTIONS
 print("Part One : " + str(solution_1) + "\nPart Two : " + str(solution_2))

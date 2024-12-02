@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 with open(os.getcwd() + "/AoC_private/2023/08/input.txt", "r") as f:
-# with open(os.getcwd() + "/2023/08/example.txt", "r") as f:
+    # with open(os.getcwd() + "/2023/08/example.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -51,7 +51,7 @@ hits = []
 for location in locations:
     c = 0
     z = 0
-    while not re.match(r'[A-Z]{2}Z',location):
+    while not re.match(r"[A-Z]{2}Z", location):
         if instructions[c] == "L":
             location = directions[location][0]
         elif instructions[c] == "R":

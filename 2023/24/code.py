@@ -34,7 +34,7 @@ def intersect(a, b):
     x, err, rank = np.linalg.lstsq(np.array([va, -vb]).T, cb - ca)[:3]
     # print(x,err,rank)
     if rank == 2:
-        print(va,x,ca)
+        print(va, x, ca)
         return va * x[0] + ca
     else:
         return np.array([-1, -1, -1])
@@ -48,7 +48,7 @@ def intersect_xy(a, b):
 
     x, err, rank = np.linalg.lstsq(np.array([va, -vb]).T, cb - ca)[:3]
     if rank == 2:
-        print(va,x,ca)
+        print(va, x, ca)
         return va * x[0] + ca
     else:
         return np.array([-1, -1])
@@ -64,7 +64,7 @@ for n, line in enumerate(input):
     velocity = [int(x) for x in line.split(" @ ")[1].split(", ")]
     meteroites[n] = (position, velocity)
 
-area = (7,27)
+area = (7, 27)
 # area = (200000000000000, 400000000000000)
 for i, j in itertools.combinations(meteroites, 2):
     a = meteroites[i]

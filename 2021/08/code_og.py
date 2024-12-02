@@ -11,7 +11,7 @@ import os
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\08\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\08\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\08\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -34,7 +34,7 @@ print(input)
 # PART 1
 count = 0
 for line in out:
-    if re.match(r'\b[a-g]{2,4}\b|\b[a-g]{7}\b', line):
+    if re.match(r"\b[a-g]{2,4}\b|\b[a-g]{7}\b", line):
         count += 1
 solution_1 = count
 
@@ -95,7 +95,7 @@ for i in range(0, len(inp)):
             output_number.append(8)
         if Counter(out[i][j]) == Counter(nine):
             output_number.append(9)
-    temp_sol = ''.join(str(x) for x in output_number)
+    temp_sol = "".join(str(x) for x in output_number)
     print(inp[i], out[i], temp_sol)
     temp_sol = int(temp_sol)
     solution_2 += temp_sol

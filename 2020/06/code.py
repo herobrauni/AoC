@@ -3,7 +3,7 @@
 # Date = 2021-12-01
 
 # with open(os.getcwd() + "\\2020\\06\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2020\\06\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\06\\input.txt", "r") as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
@@ -34,13 +34,13 @@ for x in input:
     o = 0
     count = 1
     for y in x:
-        if (y == "\n"):
+        if y == "\n":
             count += 1
     x = x.replace("\n", "")
     bla = set(x)
     for i in bla:
         c = x.count(i)
-        if (c == count):
+        if c == count:
             z += 1
             o += 1
     # print(x, "\n", bla, "\n", count, o)

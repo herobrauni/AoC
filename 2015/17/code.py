@@ -13,7 +13,7 @@ import itertools
 solution_1, solution_2 = 0, 0
 
 with open(os.getcwd() + "/AoC_private/2015/17/input.txt", "r") as f:
-# with open(os.getcwd() + "/2015/17/example.txt", 'r') as f:
+    # with open(os.getcwd() + "/2015/17/example.txt", 'r') as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
@@ -39,7 +39,7 @@ for i in range(len(input)):
         if sum(x) == goal:
             solution_1 += 1
             if len(x) in cl.keys():
-                cl[len(x)] +=1
+                cl[len(x)] += 1
             else:
                 cl[len(x)] = 1
 

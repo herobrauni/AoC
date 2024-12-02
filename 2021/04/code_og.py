@@ -12,7 +12,7 @@ import os
 solution_1, solution_2 = "", ""
 
 # with open(os.getcwd() + "\\2021\\04\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\04\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\04\\input.txt", "r") as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
@@ -49,10 +49,10 @@ for draw in draws:
     # check if bingo
     for x in range(0, len(fields), 5):
         for y in range(0, 5):
-            if sum(fields[x+y]) == -5:
+            if sum(fields[x + y]) == -5:
                 print("horizontal: ", x, draw)
                 break
-            if sum([row[0+y] for row in fields[x:x + 5]]) == -5:
+            if sum([row[0 + y] for row in fields[x : x + 5]]) == -5:
                 print("vertical: ", x, draw)
                 break
         else:
@@ -64,7 +64,7 @@ for draw in draws:
 
 t = 0
 for i in range(0, 5):
-    t += sum([row for row in fields[i+x]if row != -1])
+    t += sum([row for row in fields[i + x] if row != -1])
 
 solution_1 = t * draw
 # PART 2
@@ -76,14 +76,14 @@ for draw in draws:
         for j in range(len(fields_p2[i])):
             if fields_p2[i][j] == draw:
                 fields_p2[i][j] = -1
-    # check if bingo
+        # check if bingo
         for x in range(0, len(fields_p2), 5):
             for y in range(0, 5):
-                if sum(fields_p2[x+y]) == -5:
+                if sum(fields_p2[x + y]) == -5:
                     for u in range(5):
                         # print(fields_p2[x+u])
                         temp_remove.append(x)  # give indexes
-                if sum([row[0+y] for row in fields_p2[x:x + 5]]) == -5:
+                if sum([row[0 + y] for row in fields_p2[x : x + 5]]) == -5:
                     for u in range(5):
                         # print(fields_p2[x+u])
                         temp_remove.append(x)  # give indexes
@@ -104,7 +104,7 @@ temp = []
 for i in range(0, len(fields_og), 5):
     if i not in temp_remove:
         for j in range(0, 5):
-            temp.append(fields[i+j])
+            temp.append(fields[i + j])
 
 for draw in draws:
     for i in range(len(temp)):
@@ -115,10 +115,10 @@ for draw in draws:
     # check if bingo
     for x in range(0, len(temp), 5):
         for y in range(0, 5):
-            if sum(temp[x+y]) == -5:
+            if sum(temp[x + y]) == -5:
                 print("horizontal: ", x, draw)
                 break
-            if sum([row[0+y] for row in temp[x:x + 5]]) == -5:
+            if sum([row[0 + y] for row in temp[x : x + 5]]) == -5:
                 print("vertical: ", x, draw)
                 break
         else:
@@ -131,7 +131,7 @@ for draw in draws:
 
 t = 0
 for i in range(0, 5):
-    t += sum([row for row in temp[i+x]if row != -1])
+    t += sum([row for row in temp[i + x] if row != -1])
 
 solution_2 = t * draw
 

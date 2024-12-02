@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\13\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\13\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\13\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
 
@@ -30,13 +30,13 @@ for i in numbers:
     numbers2.append(int(i))
 numbers = []
 for i in range(0, len(numbers2), 2):
-    numbers.append(numbers2[i:i+2])
+    numbers.append(numbers2[i : i + 2])
 
 # Create the empty sheet
-sheet = [" "] * (max([x[1] for x in numbers])+1)
+sheet = [" "] * (max([x[1] for x in numbers]) + 1)
 max_y = max([x[0] for x in numbers])
 for i in range(len(sheet)):
-    sheet[i] = [" "] * (max_y+1)
+    sheet[i] = [" "] * (max_y + 1)
 
 # PART 1
 # Mark the Inputs on the sheet
@@ -48,8 +48,8 @@ for i in numbers:
 def fold_y(sheet, y):
     for i in range(len(sheet)):
         for j in range(len(sheet[y])):
-            if i < y and sheet[abs(y - i)+y][j] == "#":
-                sheet[i][j] = sheet[abs(y - i)+y][j]
+            if i < y and sheet[abs(y - i) + y][j] == "#":
+                sheet[i][j] = sheet[abs(y - i) + y][j]
     return sheet[:y]
 
 
@@ -57,8 +57,8 @@ def fold_y(sheet, y):
 def fold_x(sheet, x):
     for i in range(len(sheet)):
         for j in range(len(sheet[i])):
-            if j < x and sheet[i][abs(x - j)+x] == "#":
-                sheet[i][j] = sheet[i][abs(x - j)+x]
+            if j < x and sheet[i][abs(x - j) + x] == "#":
+                sheet[i][j] = sheet[i][abs(x - j) + x]
     return [i[:x] for i in sheet]
 
 

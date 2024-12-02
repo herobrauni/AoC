@@ -94,7 +94,7 @@ def score(input):
 
 
 # PART 1
-solution_1 = score(tilt(input,"north"))
+solution_1 = score(tilt(input, "north"))
 
 # PART 2
 test = {}

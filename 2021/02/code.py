@@ -5,14 +5,14 @@
 import re
 
 # with open(os.getcwd() + "\\2021\\02\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\02\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\02\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
     # for line in f.readlines():
     # input.append(int(line))
     # input = [int(line) for line in f.readlines()]
-    #input = [line for line in f.readlines()]
+    # input = [line for line in f.readlines()]
 
 """
 print(input)
@@ -34,7 +34,7 @@ for line in input:
     elif command == "up":
         depth -= value
 
-solution_1 = (depth*horizontal)
+solution_1 = depth * horizontal
 
 # PART 2
 depth, horizontal, aim = 0, 0, 0
@@ -53,7 +53,7 @@ for line in input:
     elif command == "up":
         aim -= value
 
-solution_2 = (depth*horizontal)
+solution_2 = depth * horizontal
 
 # SOLUTIONS
 print("Part One : " + str(solution_1))

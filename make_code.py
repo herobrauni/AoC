@@ -8,16 +8,17 @@ with open("code.py.template", "r") as f:
 day = int(sys.argv[1])
 day_for_folder = "0" + str(day) if int(day) < 10 else str(day)
 
-data = {
-    "day": day,
-    "year": sys.argv[2],
-    "day_for_folder": day_for_folder
-}
+data = {"day": day, "year": sys.argv[2], "day_for_folder": day_for_folder}
 
 template = string.Template(template_text)
 result = template.substitute(data)
 
 
-if not os.path.exists(os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py"):
-    with open(os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py", "w") as f:
+if not os.path.exists(
+    os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py"
+):
+    with open(
+        os.getcwd() + "/" + data["year"] + "/" + data["day_for_folder"] + "/code.py",
+        "w",
+    ) as f:
         f.write(result)

@@ -5,13 +5,13 @@ import re
 import os
 
 # with open(os.getcwd() + "\\2020\\04\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2020\\04\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\04\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n\n")
     # input = []
     # for line in f.readlines():
     # input.append(int(line))
-    #input = [int(line) for line in f.readlines()]
+    # input = [int(line) for line in f.readlines()]
     # input = [line for line in f.readlines()]
 
 """
@@ -27,9 +27,9 @@ count = 0
 for b in input:
     c = 0
     for x in fields:
-        if (x in b):
+        if x in b:
             c += 1
-    if (c == 7):
+    if c == 7:
         count += 1
 
 print("Part One : " + str(count))
@@ -50,21 +50,21 @@ count = 0
 for u in input:
     u = u.strip("\n")
     checks = [0, 0, 0, 0, 0, 0, 0]
-    if (re.search(byr, u)):
+    if re.search(byr, u):
         checks[0] += 1
-    if (re.search(iyr, u)):
+    if re.search(iyr, u):
         checks[1] += 1
-    if (re.search(eyr, u)):
+    if re.search(eyr, u):
         checks[2] += 1
-    if (re.search(hgt, u)):
+    if re.search(hgt, u):
         checks[3] += 1
-    if (re.search(hcl, u)):
+    if re.search(hcl, u):
         checks[4] += 1
-    if (re.search(ecl, u)):
+    if re.search(ecl, u):
         checks[5] += 1
-    if (re.search(pid, u)):
+    if re.search(pid, u):
         checks[6] += 1
-    if (sum(checks) == 7):
+    if sum(checks) == 7:
         count += 1
 
 print("Part Two : " + str(count))

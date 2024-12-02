@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\10\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\10\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\10\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
 # PART 0
@@ -22,10 +22,17 @@ print(input)
 """
 
 # PART 1
-scores = {")": 3, "}": 1197,
-          "]": 57, ">": 25137, "(": 1, "{": 3, "[": 2, "<": 4}
-brackets = {"(": ")", "{": "}", "[": "]", "<": ">",
-            ")": "(", "}": "{", "]": "[", ">": "<"}
+scores = {")": 3, "}": 1197, "]": 57, ">": 25137, "(": 1, "{": 3, "[": 2, "<": 4}
+brackets = {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+    "<": ">",
+    ")": "(",
+    "}": "{",
+    "]": "[",
+    ">": "<",
+}
 synt_e = []
 ignore = []
 # Iterate through the input by line and by character
@@ -73,12 +80,12 @@ s = []
 for i in missing_brackets:
     score = 0
     for j in i:
-        score = score*5 + scores[j]
+        score = score * 5 + scores[j]
     s.append(score)
 
 # Select the middle score
 s.sort()
-solution_2 = s[len(s)//2]
+solution_2 = s[len(s) // 2]
 
 # SOLUTIONS
 

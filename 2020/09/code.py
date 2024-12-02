@@ -3,7 +3,7 @@
 # Date = 2021-12-01
 
 # with open(os.getcwd() + "\\2020\\09\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2020\\09\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\09\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -26,19 +26,19 @@ for i in range(0, 25):
 def find(x, input):
     for y in range(x - 25, x):
         for z in range(x - 25, x):
-            if (input[y] != input[z]):
-                if (int(input[y]) + int(input[z]) == int(input[x])):
+            if input[y] != input[z]:
+                if int(input[y]) + int(input[z]) == int(input[x]):
                     return True
 
 
 for x in range(25, len(input)):
     boo = False
     boo = find(x, input)
-    if (boo):
+    if boo:
         test[x] = True
 
 for u in test:
-    if(u != True):
+    if u != True:
         solution_1 = u
         break
 
@@ -57,7 +57,7 @@ lists = [[]]
 for i in range(len(input) + 1):
     for j in range(i + 1, len(input) + 1):
         sub = input[i:j]
-        if(sum(sub) > zahl):
+        if sum(sub) > zahl:
             break
         lists.append(sub)
         # print(sub)
@@ -66,8 +66,8 @@ for i in range(len(input) + 1):
 
 for x in lists:
     bla = sum(x)
-    if (bla == zahl):
-        solution_2 = (min(x) + max(x))
+    if bla == zahl:
+        solution_2 = min(x) + max(x)
 
 
 print("Part Two : " + str(solution_2))

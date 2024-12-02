@@ -14,13 +14,14 @@ from functools import cache
 solution_1, solution_2 = 0, 0
 
 with open(os.getcwd() + "/AoC_private/2023/12/input.txt", "r") as f:
-# with open(os.getcwd() + "/2023/12/example.txt", "r") as f:
+    # with open(os.getcwd() + "/2023/12/example.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
 
 
 # PART 0
 print(input)
+
 
 @cache
 def solve(g, n, gears, numbers, r=0):
@@ -39,6 +40,7 @@ def solve(g, n, gears, numbers, r=0):
 
     return r
 
+
 # PART 1
 for line in input:
     gears, numbers = line.split()
@@ -49,8 +51,8 @@ for line in input:
 # PART 2
 for line in input:
     gears, numbers = line.split()
-    gears = (gears + "?") *5
-    numbers = tuple([int(x) for x in numbers.split(",")]*5)
+    gears = (gears + "?") * 5
+    numbers = tuple([int(x) for x in numbers.split(",")] * 5)
     solution_2 += solve(0, 0, gears, numbers)
 
 # SOLUTIONS

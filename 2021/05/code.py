@@ -11,20 +11,20 @@ import os
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\05\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\05\\input.txt", 'r') as f:
-    input = f.read().strip().replace('\n', ',')
+with open(os.getcwd() + "\\2021\\05\\input.txt", "r") as f:
+    input = f.read().strip().replace("\n", ",")
 
 # PART 0
 # Usual input processing, this time creating one big list with ALL ints, in the incoming order
-input = [int(x) for x in re.split(' -> |,', input)]
+input = [int(x) for x in re.split(" -> |,", input)]
 
 # Then grouping again by pairs of 4
-t1 = [input[i:i+4] for i in range(0, len(input), 4)]
+t1 = [input[i : i + 4] for i in range(0, len(input), 4)]
 
 # PART 1
 # Creating a 2d list with size of the biggest number in the list
 # +1 because 0 is included in Input
-diagram = [[0]*(max(input)+1) for i in range(max(input)+1)]
+diagram = [[0] * (max(input) + 1) for i in range(max(input) + 1)]
 
 # Iterate through each Pair of Coordinates
 for line in t1:
@@ -33,9 +33,9 @@ for line in t1:
     # We care only about Vertical and Horizontal lines
     if x1 == x2 or y1 == y2:
         # Chose smaller and bigger Number in x1,x2 for lower and upper bound
-        for x in range(min(x1, x2), max(x1, x2)+1):
+        for x in range(min(x1, x2), max(x1, x2) + 1):
             # Chose smaller and bigger Number in y1,y2 for lower and upper bound
-            for y in range(min(y1, y2), max(y1, y2)+1):
+            for y in range(min(y1, y2), max(y1, y2) + 1):
                 # Add 1 to the diagram at the coordinates
                 # y and x are swaped here to be able to print the diagram the same orientation as AoC
                 diagram[y][x] += 1
@@ -49,7 +49,7 @@ for line in diagram:
 # PART 2
 # Creating a 2d list with size of the biggest number in the list
 # +1 because 0 is included in Input
-diagram = [[0]*(max(input)+1) for i in range(max(input)+1)]
+diagram = [[0] * (max(input) + 1) for i in range(max(input) + 1)]
 
 # Iterate through each Pair of Coordinates
 for line in t1:

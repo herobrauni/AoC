@@ -11,7 +11,7 @@ import os
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\07\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\07\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\07\\input.txt", "r") as f:
     input = f.read()
 
 
@@ -26,11 +26,11 @@ print(input)
 # PART 1
 fuel = []
 # Range as Smallest and Largest Position in Startingpositions of the Crabs
-for i in range(min(input), max(input)+1):
+for i in range(min(input), max(input) + 1):
     f = 0
     # iterate over the input and add the fuel for each position
     for j in range(len(input)):
-        f += (abs(input[j]-i))
+        f += abs(input[j] - i)
     fuel.append(f)
 
 # Select the least fuel used
@@ -40,12 +40,12 @@ solution_1 = min(fuel)
 # PART 2
 fuel = []
 # Range as Smallest and Largest Position in Startingpositions of the Crabs
-for i in range(min(input), max(input)+1):
+for i in range(min(input), max(input) + 1):
     f = 0
     # iterate over the input and add the fuel for each position
     for j in range(len(input)):
         # 1/2 n (1 + n) <-> Gaußsche Summenformel # Thanks WolframAlpha
-        f += (1/2)*(abs(input[j]-i))*(1 + abs(input[j]-i))
+        f += (1 / 2) * (abs(input[j] - i)) * (1 + abs(input[j] - i))
     fuel.append(f)
 
 # Select the least fuel used

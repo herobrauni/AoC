@@ -25,7 +25,7 @@ with open(os.getcwd() + "/2023/07/example.txt", "r") as f:
 
 
 print(input)
-ranking = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+ranking = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 hands = [x.split()[0] for x in input]
 scores = [int(x.split()[1]) for x in input]
 hands2 = {key: [] for key in ["High", "One", "Two", "Three", "Full", "Four", "Five"]}

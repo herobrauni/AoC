@@ -7,11 +7,12 @@ import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
+
 puzzle = Puzzle(year=2024, day=1)
 
 
 # with open(os.getcwd() + "/2024/01/example.txt", 'r') as f:
-with open(os.getcwd() + "/AoC_private/2024/01/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2024/01/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
 

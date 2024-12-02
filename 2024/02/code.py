@@ -7,10 +7,11 @@ import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
+
 puzzle = Puzzle(year=2024, day=2)
 
 # with open(os.getcwd() + "/2024/02/example.txt", 'r') as f:
-with open(os.getcwd() + "/AoC_private/2024/02/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2024/02/input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -26,18 +27,18 @@ def issafe(line):
     c = 0
     bla = True if x[0] < x[1] else False
     for z in range(1, len(x)):
-        if x[z-1] == x[z]:
+        if x[z - 1] == x[z]:
             return False
-        elif abs(x[z-1] - x[z]) > 3:
+        elif abs(x[z - 1] - x[z]) > 3:
             return False
-        elif x[z-1] < x[z] and bla == True:
+        elif x[z - 1] < x[z] and bla == True:
             c += 1
-        elif x[z-1] > x[z] and bla != True:
+        elif x[z - 1] > x[z] and bla != True:
             c += 1
         else:
             return False
         # print(c)
-    if c == len(x)-1:
+    if c == len(x) - 1:
         # solution_1 += 1
         return True
     else:

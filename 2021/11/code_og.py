@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\11\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\11\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\11\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     # input = f.read()
@@ -53,7 +53,17 @@ def cn(inp, x, y):
         return 0
     if inp[x][y] >= 9:
         inp[x][y] = "F"
-        return 1 + cn(inp, x - 1, y) + cn(inp, x + 1, y) + cn(inp, x, y - 1) + cn(inp, x, y + 1) + cn(inp, x - 1, y - 1) + cn(inp, x + 1, y + 1) + cn(inp, x - 1, y + 1) + cn(inp, x + 1, y - 1)
+        return (
+            1
+            + cn(inp, x - 1, y)
+            + cn(inp, x + 1, y)
+            + cn(inp, x, y - 1)
+            + cn(inp, x, y + 1)
+            + cn(inp, x - 1, y - 1)
+            + cn(inp, x + 1, y + 1)
+            + cn(inp, x - 1, y + 1)
+            + cn(inp, x + 1, y - 1)
+        )
     else:
         inp[x][y] += 1
         return 0
@@ -80,7 +90,7 @@ solution_1 = test
 # for line in bla:
 #     print(line)
 # PART 2
-all_flash = (len(input)-2)*(len(input[0])-2)
+all_flash = (len(input) - 2) * (len(input[0]) - 2)
 bla = copy.deepcopy(input)
 
 for z in range(10000):

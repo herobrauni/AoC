@@ -3,13 +3,13 @@
 # Date = 2021-12-01
 
 # with open(os.getcwd() + "\\2020\\03\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2020\\03\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2020\\03\\input.txt", "r") as f:
     # input = f.read()
     # input = input.split("\n")
     # input = []
     # for line in f.readlines():
     # input.append(int(line))
-    #input = [int(line) for line in f.readlines()]
+    # input = [int(line) for line in f.readlines()]
     input = [line.strip() for line in f.readlines()]
 
 """
@@ -23,7 +23,7 @@ solution_1 = 0
 for l in input:
     if i >= len(l):
         i -= len(l)
-    if (l[i] == "#"):
+    if l[i] == "#":
         solution_1 += 1
     i += 3
 
@@ -43,7 +43,7 @@ for steps in lst:
     while n < l:
         if i >= len(input[n]):
             i -= len(input[n])
-        if (input[n][i] == '#'):
+        if input[n][i] == "#":
             c += 1
         i += steps[0]
         n += steps[1]

@@ -12,7 +12,7 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\09\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\09\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\09\\input.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
 
@@ -40,12 +40,14 @@ lowpoints = []
 
 # iterate through all points and check if the current point is smaller than ALL the neighbours
 # we start at +1 and end at -1 to avoid the border
-for i in range(1, len(input)-1):
-    for j in range(1, len(input[0])-1):
-        if input[i][j] < min(input[i-1][j], input[i+1][j], input[i][j-1], input[i][j+1]):
+for i in range(1, len(input) - 1):
+    for j in range(1, len(input[0]) - 1):
+        if input[i][j] < min(
+            input[i - 1][j], input[i + 1][j], input[i][j - 1], input[i][j + 1]
+        ):
             lowpoints.append(input[i][j])
 
-solution_1 = sum([x+1 for x in lowpoints])
+solution_1 = sum([x + 1 for x in lowpoints])
 
 
 # PART 2
@@ -56,13 +58,19 @@ def check_neighbours(inp, i, j):
         return 0
     else:
         inp[i][j] = 9
-    return 1 + check_neighbours(inp, i-1, j) + check_neighbours(inp, i+1, j) + check_neighbours(inp, i, j-1) + check_neighbours(inp, i, j+1)
+    return (
+        1
+        + check_neighbours(inp, i - 1, j)
+        + check_neighbours(inp, i + 1, j)
+        + check_neighbours(inp, i, j - 1)
+        + check_neighbours(inp, i, j + 1)
+    )
 
 
 clusters = []
 # iterate through all points and check the size of the basin it belongs to, if any
-for i in range(1, len(input)-1):
-    for j in range(1, len(input[0])-1):
+for i in range(1, len(input) - 1):
+    for j in range(1, len(input[0]) - 1):
         clusters.append(check_neighbours(input, i, j))
 
 clusters.sort(reverse=True)

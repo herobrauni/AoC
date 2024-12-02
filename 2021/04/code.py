@@ -55,11 +55,13 @@ def check_for_bingo(fields):
     all_bingo_rows_for_this_round = []
     for x in range(0, len(fields), 5):
         for y in range(0, 5):
-            if (sum(fields[x + y]) == -5 or sum([row[0 + y] for row in fields[x: x + 5]]) == -5):
+            if (
+                sum(fields[x + y]) == -5
+                or sum([row[0 + y] for row in fields[x : x + 5]]) == -5
+            ):
                 all_bingo_rows_for_this_round.append(x)
     # Remove duplicates from the list
-    all_bingo_rows_for_this_round = list(
-        dict.fromkeys(all_bingo_rows_for_this_round))
+    all_bingo_rows_for_this_round = list(dict.fromkeys(all_bingo_rows_for_this_round))
     return all_bingo_rows_for_this_round
 
 
@@ -69,8 +71,12 @@ for draw in draws:
     mark_bingo_numbers_on_sheets(fields, draw)
     bingo_rows = check_for_bingo(fields)
     if len(bingo_rows) == 1:
-        solution_1 = draw * sum([sum([ele for ele in sub if ele != -1])
-                                for sub in fields[bingo_rows[0]: bingo_rows[0] + 5]])
+        solution_1 = draw * sum(
+            [
+                sum([ele for ele in sub if ele != -1])
+                for sub in fields[bingo_rows[0] : bingo_rows[0] + 5]
+            ]
+        )
         break
 
 # PART 2
@@ -81,12 +87,12 @@ solution = []
 for draw in draws:
     if len(check_for_bingo(fields)) == (len(fields) // 5 - 1):
         # get index of remaining board
-        start_of_remaining_board = [i for i in range(
-            0, len(fields), 5) if i not in check_for_bingo(fields)]
+        start_of_remaining_board = [
+            i for i in range(0, len(fields), 5) if i not in check_for_bingo(fields)
+        ]
 
         # create new list "solution" with the remaining board
-        solution = fields[start_of_remaining_board[0]
-            :start_of_remaining_board[0] + 5]
+        solution = fields[start_of_remaining_board[0] : start_of_remaining_board[0] + 5]
         break
     mark_bingo_numbers_on_sheets(fields, draw)
 
@@ -96,8 +102,9 @@ for draw in draws:
 for draw in draws:
     mark_bingo_numbers_on_sheets(solution, draw)
     if len(check_for_bingo(solution)) == 1:
-        solution_2 = draw * \
-            sum([sum([ele for ele in sub if ele != -1]) for sub in solution])
+        solution_2 = draw * sum(
+            [sum([ele for ele in sub if ele != -1]) for sub in solution]
+        )
         break
 
 

@@ -14,16 +14,16 @@ import itertools
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\18\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\18\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\18\\input.txt", "r") as f:
     input = [line.strip() for line in f.readlines()]
 
 
 def explode(line):
     inp_list_with_brackets = list(line)
     for i in range(len(inp_list_with_brackets)):
-        if "".join(inp_list_with_brackets[i:i+2]).isalnum():
-            inp_list_with_brackets[i] = "".join(inp_list_with_brackets[i:i+2])
-            del inp_list_with_brackets[i+1]
+        if "".join(inp_list_with_brackets[i : i + 2]).isalnum():
+            inp_list_with_brackets[i] = "".join(inp_list_with_brackets[i : i + 2])
+            del inp_list_with_brackets[i + 1]
 
     bc = 0
     blub = -1
@@ -34,7 +34,9 @@ def explode(line):
             bc -= 1
         if bc > 4:
             left_deepest_element = [
-                int(inp_list_with_brackets[i+1]), int(inp_list_with_brackets[i+3])]
+                int(inp_list_with_brackets[i + 1]),
+                int(inp_list_with_brackets[i + 3]),
+            ]
             blub = i
             break
     if blub == -1:
@@ -42,26 +44,39 @@ def explode(line):
 
     for i in range(blub, 0, -1):
         if inp_list_with_brackets[i].isalnum():
-            inp_list_with_brackets[i] = int(
-                inp_list_with_brackets[i])+left_deepest_element[0]
+            inp_list_with_brackets[i] = (
+                int(inp_list_with_brackets[i]) + left_deepest_element[0]
+            )
             break
     for i in range(blub + 5, len(inp_list_with_brackets)):
         if inp_list_with_brackets[i].isalnum():
-            inp_list_with_brackets[i] = int(
-                inp_list_with_brackets[i])+left_deepest_element[1]
+            inp_list_with_brackets[i] = (
+                int(inp_list_with_brackets[i]) + left_deepest_element[1]
+            )
             break
-    inp_list_with_brackets = inp_list_with_brackets[:blub] + ["0"] + inp_list_with_brackets[
-        blub+5:]
+    inp_list_with_brackets = (
+        inp_list_with_brackets[:blub] + ["0"] + inp_list_with_brackets[blub + 5 :]
+    )
     return str("".join([str(x) for x in inp_list_with_brackets]))
 
 
 def split(line):
     for i in range(len(line)):
-        if line[i].isalnum() and line[i+1].isalnum():
+        if line[i].isalnum() and line[i + 1].isalnum():
             inp_list_with_brackets = list(line)
-            del inp_list_with_brackets[i:i+2]
-            inp_list_with_brackets.insert(i, "".join(["[", str(math.floor(int("".join(
-                [line[i:i+2]])) / 2)), ",", str(math.ceil(int("".join([line[i:i+2]])) / 2)), "]"]))
+            del inp_list_with_brackets[i : i + 2]
+            inp_list_with_brackets.insert(
+                i,
+                "".join(
+                    [
+                        "[",
+                        str(math.floor(int("".join([line[i : i + 2]])) / 2)),
+                        ",",
+                        str(math.ceil(int("".join([line[i : i + 2]])) / 2)),
+                        "]",
+                    ]
+                ),
+            )
             return str("".join([str(x) for x in inp_list_with_brackets]))
     return line
 
@@ -72,7 +87,7 @@ def addition(line, to_add):
 
 def magnitude(x):
     if isinstance(x, list):
-        return(magnitude(x[0])*3 + magnitude(x[1])*2)
+        return magnitude(x[0]) * 3 + magnitude(x[1]) * 2
     else:
         return x
 

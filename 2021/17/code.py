@@ -12,15 +12,17 @@ import math
 solution_1, solution_2 = 0, 0
 
 # with open(os.getcwd() + "\\2021\\17\\example.txt", 'r') as f:
-with open(os.getcwd() + "\\2021\\17\\input.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\17\\input.txt", "r") as f:
     input = f.read()
 
 
 # PART 0
 target_area_x = int(input.split(" ")[2].split("=")[1].split("..")[0]), int(
-    input.split(" ")[2].split("=")[1].split("..")[1].strip(","))
+    input.split(" ")[2].split("=")[1].split("..")[1].strip(",")
+)
 target_area_y = int(input.split(" ")[3].split("=")[1].split("..")[0]), int(
-    input.split(" ")[3].split("=")[1].split("..")[1])
+    input.split(" ")[3].split("=")[1].split("..")[1]
+)
 
 
 # PART 1
@@ -34,7 +36,9 @@ def shoot(trajectory, target_area_x, target_area_y):
     y = -99999999
     while not projectile_position[1] < min(target_area_y):
         projectile_position = (
-            projectile_position[0] + trajectory[0], projectile_position[1] + trajectory[1])
+            projectile_position[0] + trajectory[0],
+            projectile_position[1] + trajectory[1],
+        )
         # print(projectile_position, trajectory)
         trajectory[0] += 1 if trajectory[0] < 0 else 0
         trajectory[0] -= 1 if trajectory[0] > 0 else 0
@@ -43,8 +47,9 @@ def shoot(trajectory, target_area_x, target_area_y):
             y = projectile_position[1]
         path.append(projectile_position)
     for x in path:
-        if x[0] in range(target_area_x[0], target_area_x[1]+1) and x[1] in range(
-                target_area_y[0], target_area_y[1]+1):
+        if x[0] in range(target_area_x[0], target_area_x[1] + 1) and x[1] in range(
+            target_area_y[0], target_area_y[1] + 1
+        ):
             return "HIT", y
     else:
         return "MISS", y
@@ -55,7 +60,7 @@ hits = 0
 
 # we simulate the trajectory for each angle and check for hits and the highest y points reached
 # x velocity cant go higher than the right side of the target area, otherwise we would shoot through in step 1
-for x in range(0, max(target_area_x)+1):
+for x in range(0, max(target_area_x) + 1):
     # y velocity should be between the lowest point and the lowest point * -1 (dont know why, but works like this)
     for y in range(min(target_area_y), abs(min(target_area_y))):
         t1 = 0

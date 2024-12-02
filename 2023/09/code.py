@@ -11,8 +11,8 @@ import math
 
 solution_1, solution_2 = 0, 0
 
-with open(os.getcwd() + "/AoC_private/2023/09/input.txt", 'r') as f:
-# with open(os.getcwd() + "/2023/09/example.txt", "r") as f:
+with open(os.getcwd() + "/AoC_private/2023/09/input.txt", "r") as f:
+    # with open(os.getcwd() + "/2023/09/example.txt", "r") as f:
     input = f.read()
     input = input.split("\n")
     input = [re.findall(r"-?\d+", x) for x in input]
@@ -22,11 +22,13 @@ with open(os.getcwd() + "/AoC_private/2023/09/input.txt", 'r') as f:
 
 print(input)
 
+
 def diffs(line):
     test = []
     for i in range(1, len(line)):
         test.append(int(line[i]) - int(line[i - 1]))
     return test
+
 
 # PART 1
 hist = {}
@@ -42,7 +44,7 @@ for line in input:
     for i in range(len(hist[start]) - 1, 0, -1):
         hist[start][i - 1].append(hist[start][i][-1] + hist[start][i - 1][-1])
         # PART 2
-        hist[start][i - 1].insert(0,hist[start][i - 1][0]-hist[start][i][0])
+        hist[start][i - 1].insert(0, hist[start][i - 1][0] - hist[start][i][0])
 
 for l in hist:
     solution_1 += hist[l][0][-1]

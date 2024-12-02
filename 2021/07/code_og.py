@@ -12,7 +12,7 @@ import os
 
 solution_1, solution_2 = 0, 0
 
-with open(os.getcwd() + "\\2021\\07\\example.txt", 'r') as f:
+with open(os.getcwd() + "\\2021\\07\\example.txt", "r") as f:
     # with open(os.getcwd() + "\\2021\\07\\input.txt", 'r') as f:
     input = f.read()
     input = [int(line) for line in input.split(",")]
@@ -33,7 +33,7 @@ fuel = []
 for i in range(len(input)):
     f = 0
     for j in range(len(input)):
-        f += (abs(input[i]-input[j]))
+        f += abs(input[i] - input[j])
     fuel.append(f)
 
 solution_1 = min(fuel)
@@ -45,7 +45,7 @@ for i in range(len(input)):
     f = 0
     for j in range(len(input)):
         # 1/2 n (1 + n)
-        f += (1/2)*(abs(input[i]-input[j]))*(1 + abs(input[i]-input[j]))
+        f += (1 / 2) * (abs(input[i] - input[j])) * (1 + abs(input[i] - input[j]))
     fuel.append(f)
 
 solution_2 = int(min(fuel))
