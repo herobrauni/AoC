@@ -22,23 +22,21 @@ with open(os.getcwd() + "/AoC_private/2024/02/input.txt", 'r') as f:
 print(input)
 
 
-def issafe(line):
+def issafe(line_list):
     c = 0
-    bla = True if x[0] < x[1] else False
-    for z in range(1, len(x)):
-        if x[z-1] == x[z]:
+    slope = True if line_list[0] < line_list[1] else False
+    for z in range(1, len(line_list)):
+        if line_list[z-1] == line_list[z]:
             return False
-        elif abs(x[z-1] - x[z]) > 3:
+        elif abs(line_list[z-1] - line_list[z]) > 3:
             return False
-        elif x[z-1] < x[z] and bla == True:
+        elif line_list[z-1] < line_list[z] and slope == True:
             c += 1
-        elif x[z-1] > x[z] and bla != True:
+        elif line_list[z-1] > line_list[z] and slope != True:
             c += 1
         else:
             return False
-        # print(c)
-    if c == len(x)-1:
-        # solution_1 += 1
+    if c == len(line_list)-1:
         return True
     else:
         return False
@@ -47,26 +45,25 @@ def issafe(line):
 # PART 1
 solution_1 = 0
 for line in input:
-    x = [int(y) for y in line.split()]
-    # print(line)
-    solution_1 += 1 if issafe(line) == True else 0
+    line_list = [int(y) for y in line.split()]
+    solution_1 += 1 if issafe(line_list) == True else 0
 
 
 # PART 2
 solution_2 = 0
 for line in input:
-    x = [int(y) for y in line.split()]
-    if issafe(line) == True:
+    line_list = [int(y) for y in line.split()]
+    if issafe(line_list) == True:
         solution_2 += 1
         continue
-    for y in range(len(x)):
-        og = copy.deepcopy(x)
-        x.pop(y)
-        if issafe(line) == True:
+    for y in range(len(line_list)):
+        og = copy.deepcopy(line_list)
+        line_list.pop(y)
+        if issafe(line_list) == True:
             solution_2 += 1
             break
         else:
-            x = copy.deepcopy(og)
+            line_list = copy.deepcopy(og)
 
 
 # SOLUTIONS
