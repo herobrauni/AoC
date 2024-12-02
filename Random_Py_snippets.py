@@ -44,8 +44,10 @@ list(zip(*array))[::-1]
 
 
 # commit that submodule stuff
+"""
 cd AoC_private
 git add .
 git commit - m "whatever"
 git push
 cd ..
+"""

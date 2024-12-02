@@ -40,13 +40,17 @@ def main [day?: string, year?: string] = {
     let eend = if $end_success != null { [$end | $end_success] | math max } else { $end }
     $site | str substring $start..$eend | str trim -r | save $"./AoC_private/($year)/($day_for_folder)/statement.html" -f
 
+    cd ./AoC_private
+    ^git add .
+    ^git commit -m $"($year)/($day_for_folder)"
+    cd ..
     # create link url
     $"[InternetShortcut]\nURL=https://adventofcode.com/($year)/day/($day)\n" | save $"./($year)/($day_for_folder)/link.url" -f
     
     # create code template
     ^python make_code.py $day $year
     # open template
-    ^code $"./($year)/($day_for_folder)/code.py" $"./AoC_private/($year)/($day_for_folder)/input"
+    ^code $"./($year)/($day_for_folder)/code.py" $"./AoC_private/($year)/($day_for_folder)/input.txt"
 
     # open browser with todays site
     ^$env.BROWSER $"https://adventofcode.com/($year)/day/($day)"
