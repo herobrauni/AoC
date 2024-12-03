@@ -31,7 +31,6 @@ for line in matches:
 
 # PART 2
 solution_2 = 0
-modded_input = ""
 dont = re.finditer(r'don\'t\(\)', input)
 do = re.finditer(r'do\(\)', input)
 mul = re.finditer(r'mul\(\d+,\d+\)', input)
@@ -48,13 +47,11 @@ for m in mul:
     print(i, m.group())
     while True and i > 0:
         if i in donts:
-            print("don't: ", m.group())
             break
         elif i in dos or i == 1:
             line = m.group().replace('mul(', '').replace(')', '')
             x, y = line.split(",")
             solution_2 += int(x) * int(y)
-            print("do: ", m.group())
             break
         i -= 1
 
