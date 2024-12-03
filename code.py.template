@@ -24,16 +24,21 @@ print(input)
 # PART 1
 solution_1 = 0
 
-# PART 2
-solution_2 = 0
 
-# SOLUTIONS
 
+### SOLUTION 1
 print("Part One : " + str(solution_1))
 
 submit(solution_1, part="a", day=$day, year=$year)
 
 
+
+# PART 2
+solution_2 = 0
+
+
+
+### SOLUTION 2
 print("Part Two : " + str(solution_2))
 
 submit(solution_2, part="b", day=$day, year=$year)
