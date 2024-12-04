@@ -3,3 +3,4 @@ tmp*.py
 session.txt
 debug.log
 2022/16/*
+tmp/** */
