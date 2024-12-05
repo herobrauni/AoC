@@ -56,6 +56,9 @@ def main [day?: string, year?: string] = {
     # open template
     ^code $"./($year)/($day_for_folder)/code.py" $"./AoC_private/($year)/($day_for_folder)/input.txt"
 
+    # paste output to cosnole
+    ^aocd
+
     # open browser with todays site
     ^$env.BROWSER $"https://adventofcode.com/($year)/day/($day)"
 }
