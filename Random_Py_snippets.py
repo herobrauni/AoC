@@ -43,6 +43,13 @@ list(zip(*array[::-1]))
 list(zip(*array))[::-1]
 
 
+# print the grid again
+for n, line in enumerate(input):
+    for m, x in [(m, y) for m, y in enumerate(line)]:
+        print(g[m, n], end="")
+    print("")
+
+
 # commit that submodule stuff
 """
 cd AoC_private
