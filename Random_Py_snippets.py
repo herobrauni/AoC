@@ -22,6 +22,17 @@ list_a = list(dict.fromkeys(list_a))
 # can be used to remove the first element from a list and add it at the end with .append()
 list.pop(i)
 
+# flatten list
+
+
+def flatten(container):
+    for i in container:
+        if isinstance(i, (list, tuple)):
+            for j in flatten(i):
+                yield j
+        else:
+            yield i
+
 
 # For Else loop -> else runs only if no break is called in the loop
 for line in input:
@@ -48,6 +59,11 @@ for n, line in enumerate(input):
     for m, x in [(m, y) for m, y in enumerate(line)]:
         print(g[m, n], end="")
     print("")
+
+
+# faster way to calculate length (in digits) of int
+# import math
+(int(math.log10(x))+1)
 
 
 # commit that submodule stuff
