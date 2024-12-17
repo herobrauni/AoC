@@ -77,4 +77,4 @@ solution_2 = len(all_paths)
 # SOLUTION 1
 print("Part Two : " + str(solution_2))
 
-submit(solution_1, part="a", day=16, year=2024)
+submit(solution_2, part="b", day=16, year=2024)
