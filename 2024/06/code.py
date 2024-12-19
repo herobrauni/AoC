@@ -2,8 +2,6 @@
 # Author = brauni
 # Date = 2024-12-06
 
-import copy
-import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
@@ -13,11 +11,6 @@ puzzle = Puzzle(year=2024, day=6)
 with open(os.getcwd() + "/AoC_private/2024/06/input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
-    # input = []
-    # for line in f.readlines():
-    # input.append(int(line))
-    # input = [int(line) for line in f.readlines()]
-    # input = [line for line in f.readlines()]
 
 print(input)
 g = {}
@@ -45,6 +38,7 @@ while pos in g.keys():
 
 solution_1 = sum([1 for x in g.keys() if g[x] == "X"])
 
+path_1 = set([x for x in g if g[x] == "X"])
 # SOLUTION 1
 print("Part One : " + str(solution_1))
 
@@ -59,28 +53,26 @@ for n, line in enumerate(input):
         g[complex(m, n)] = x
 g[start] = "."
 
-for z in g.keys():
-    f = copy.deepcopy(g)
-    if g[z] != "#":
-        g[z] = "O"
+valid = set([x for x in g if g[x] != "#"])
+
+for z in path_1:
+    valid.remove(z)
+    path = set()
     pos = start
     loop = False
     dir = 0
     for i in range(10000):
-        while (pos+directions[dir]) in g.keys() and g[pos+directions[dir]] == ".":
+        if (pos, dir) in path:
+            loop = True
+            break
+        path.add((pos, dir))
+        while (nxt := (pos+directions[dir])) in g and nxt in valid:
             pos = pos + directions[dir]
-        if (pos+directions[dir]) not in g.keys():
+        if (pos+directions[dir]) not in g:
             break
         dir = (dir + 1) % 4
-    else:
-        print("loop for: ", z)
-        loop = True
     solution_2 += 1 if loop else 0
-    if g[z] != "#":
-        g[z] = "."
-
-
-# print(loop)
+    valid.add(z)
 
 # SOLUTION 2
 print("Part Two : " + str(solution_2))
