@@ -48,9 +48,35 @@ submit(solution_1, part="a", day=1, year=2016)
 # PART 2
 solution_2 = 0
 
+visited = set()
+cur_pos = complex(0)
+cur_dir = directions[0]  # Start facing North
+complex_directions=[1,0+1j,-1,0-1j]
+
+
+found = False
+for d in input:
+    d0 = d[0]
+    d1 = int(d[1:])
+    if d0 == "R":
+        cur_dir = directions[(directions.index(cur_dir) + 1) % 4]
+    elif d0 == "L":
+        cur_dir = directions[(directions.index(cur_dir) - 1) % 4]
+    for i in range(d1):
+        cur_pos = cur_pos + complex_directions[(directions.index(cur_dir) - 1) % 4]
+        # print(cur_pos)
+        if cur_pos in visited:
+            print("duplicate")
+            solution_2 = int(abs(cur_pos.real) + abs(cur_pos.imag))
+            found = True
+            break
+        visited.add(cur_pos)
+    if found:
+        break
+
 
 
 ### SOLUTION 2
 print("Part Two : " + str(solution_2))
 
-# submit(solution_2, part="b", day=1, year=2016)
+submit(solution_2, part="b", day=1, year=2016)
