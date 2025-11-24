@@ -3,12 +3,19 @@ name = "aoc"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "advent-of-code-data>=2.1.0",
+    "advent-of-code-data[nb]>=2.1.0",
     "ipython>=9.7.0",
     "networkx>=3.6",
     "numpy>=2.3.5",
     "requests>=2.32.5",
     "sympy>=1.14.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+    "uv>=0.9.11",
 ]
