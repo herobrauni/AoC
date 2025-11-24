@@ -1,6 +1,0 @@
-requests
-numpy
-networkx
-sympy
-advent-of-code-data
-ipython

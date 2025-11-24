@@ -38,6 +38,7 @@
 			],
 			"extensions": [
 				"TheNuProjectContributors.vscode-nushell-lang",
+				"bmalehorn.vscode-fish",
 				"ms-python.python"
 			],
 			"settings": {

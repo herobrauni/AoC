@@ -1,5 +1,16 @@
 FROM mcr.microsoft.com/devcontainers/python:latest
-COPY ../requirements.txt /tmp/pip-tmp/
-RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-    && rm -rf /tmp/pip-tmp
+
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Install fish shell
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends fish
+
+# Install dependencies
+COPY pyproject.toml uv.lock /tmp/
+RUN cd /tmp && uv export --frozen --format requirements-txt > requirements.txt && \
+    uv pip install --system -r requirements.txt && \
+    rm requirements.txt pyproject.toml uv.lock
+
 RUN ln -sf /usr/share/zoneinfo/hostlocaltime /etc/localtime

@@ -4,3 +4,8 @@ session.txt
 debug.log
 2022/16/*
 tmp/**
+.venv
+__pycache__
+*.egg-info
+dist
+build

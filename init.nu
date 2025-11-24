@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 # can be empty, must be string
-def main [day?: string, year?: string] = {
+def main [day?: string, year?: string] {
     # if empty get current day / year
     let day = match $day {
         null => { date now | format date %d }
@@ -23,9 +23,9 @@ def main [day?: string, year?: string] = {
     $env.AOC_SESSION = (open ./AoC_private/session.txt)
     mkdir $"./($year)/($day_for_folder)"
     mkdir $"./AoC_private/($year)/($day_for_folder)"
-    # aocd module (pip install advent-of-code-data) to get and cache inputs etc.
-    aocd $day $year | str trim -r | save $"./AoC_private/($year)/($day_for_folder)/input.txt" -f
-    aocd $day $year --example | str trim -r | save $"./($year)/($day_for_folder)/example.txt" -f
+    # aocd module (uv add advent-of-code-data) to get and cache inputs etc.
+    uv run aocd $day $year | str trim -r | save $"./AoC_private/($year)/($day_for_folder)/input.txt" -f
+    uv run aocd $day $year --example | str trim -r | save $"./($year)/($day_for_folder)/example.txt" -f
 
     let headers = {
         cookie: $"session=($env.AOC_SESSION)"
@@ -52,13 +52,14 @@ def main [day?: string, year?: string] = {
     $"[InternetShortcut]\nURL=https://adventofcode.com/($year)/day/($day)\n" | save $"./($year)/($day_for_folder)/link.url" -f
     
     # create code template
-    ^python make_code.py $day $year
+    uv run python make_code.py $day $year
     # open template
     ^code $"./($year)/($day_for_folder)/code.py" $"./AoC_private/($year)/($day_for_folder)/input.txt"
 
     # paste output to cosnole
-    ^aocd
+    uv run aocd
 
     # open browser with todays site
-    ^$env.BROWSER $"https://adventofcode.com/($year)/day/($day)"
+    let browser = ($env | get -o BROWSER | default "xdg-open")
+    ^$browser $"https://adventofcode.com/($year)/day/($day)"
 }
