@@ -8,7 +8,6 @@ from aocd import submit
 from aocd.models import Puzzle
 puzzle = Puzzle(year=2025, day=2)
 
-
 # with open(os.getcwd() + "/2025/02/example.txt", 'r') as f:
 with open(os.getcwd() + "/AoC_private/2025/02/input.txt", 'r') as f:
     input = f.read()
@@ -36,8 +35,6 @@ print("Part One : " + str(solution_1))
 
 submit(solution_1, part="a", day=2, year=2025)
 
-
-
 # PART 2
 solution_2 = set()
 for ranges in input:
@@ -60,8 +57,6 @@ for ranges in input:
                 solution_2.add(int(i))
                 found_match = True
                 break
-        if found_match:
-            break
 
 solution_2 = sum(solution_2)
 
