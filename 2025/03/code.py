@@ -9,8 +9,8 @@ from aocd.models import Puzzle
 puzzle = Puzzle(year=2025, day=3)
 
 
-# with open(os.getcwd() + "/2025/03/example.txt", 'r') as f:
-with open(os.getcwd() + "/AoC_private/2025/03/input.txt", 'r') as f:
+with open(os.getcwd() + "/2025/03/example.txt", 'r') as f:
+# with open(os.getcwd() + "/AoC_private/2025/03/input.txt", 'r') as f:
     input = f.read()
     input = input.split("\n")
     # input = []
@@ -46,15 +46,16 @@ solution_2 = 0
 
 for line in input:
     tmp = []
-    bla = len(line) -12
+    todo = len(line) -12
 
     for i in line:
-        while bla > 0 and tmp and i > tmp[-1]:
-            devnull = tmp.pop()
-            bla -= 1
+        while todo > 0 and tmp and i > tmp[-1]:
+            tmp.pop()
+            todo -= 1
         tmp.append(i)
-    if bla > 0:
-        tmp = tmp[:-bla]
+        print(tmp)
+    if todo > 0:
+        tmp = tmp[:-todo]
     sol = ''.join(tmp)
     print(sol)
     solution_2 += int(sol)
