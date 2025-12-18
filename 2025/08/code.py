@@ -2,7 +2,6 @@
 # Author = brauni
 # Date = 2025-12-08
 
-import re
 import os
 import math
 from aocd import submit

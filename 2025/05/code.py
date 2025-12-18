@@ -2,7 +2,6 @@
 # Author = brauni
 # Date = 2025-12-05
 
-import re
 import os
 import portion as P
 from aocd import submit

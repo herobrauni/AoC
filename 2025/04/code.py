@@ -2,7 +2,6 @@
 # Author = brauni
 # Date = 2025-12-04
 
-import re
 import os
 import copy
 from aocd import submit
@@ -67,7 +66,7 @@ while True:
             solution_2 += 1
             moved = True
     # print(solution_2)
-    if moved == False:
+    if not moved:
         break
 
 
