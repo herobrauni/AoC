@@ -3,7 +3,6 @@
 # Date = 2024-12-02
 
 import copy
-import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
@@ -30,9 +29,9 @@ def issafe(line_list):
             return False
         elif abs(line_list[z-1] - line_list[z]) > 3:
             return False
-        elif line_list[z-1] < line_list[z] and slope == True:
+        elif line_list[z-1] < line_list[z] and slope:
             c += 1
-        elif line_list[z-1] > line_list[z] and slope != True:
+        elif line_list[z-1] > line_list[z] and not slope:
             c += 1
         else:
             return False
@@ -46,20 +45,20 @@ def issafe(line_list):
 solution_1 = 0
 for line in input:
     line_list = [int(y) for y in line.split()]
-    solution_1 += 1 if issafe(line_list) == True else 0
+    solution_1 += 1 if issafe(line_list) else 0
 
 
 # PART 2
 solution_2 = 0
 for line in input:
     line_list = [int(y) for y in line.split()]
-    if issafe(line_list) == True:
+    if issafe(line_list):
         solution_2 += 1
         continue
     for y in range(len(line_list)):
         og = copy.deepcopy(line_list)
         line_list.pop(y)
-        if issafe(line_list) == True:
+        if issafe(line_list):
             solution_2 += 1
             break
         else:

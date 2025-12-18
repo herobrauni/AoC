@@ -2,15 +2,16 @@
 # Author = brauni
 # Date = 2024-12-05
 
-import re
 import os
+
 from aocd import submit
 from aocd.models import Puzzle
+
 puzzle = Puzzle(year=2024, day=5)
 
 
 # with open(os.getcwd() + "/2024/05/example.txt", 'r') as f:
-with open(os.getcwd() + "/AoC_private/2024/05/input.txt", 'r') as f:
+with open(os.getcwd() + "/AoC_private/2024/05/input.txt", "r") as f:
     input = f.read()
     rules = input.split("\n\n")[0]
     rules = rules.split("\n")
@@ -62,8 +63,8 @@ for line in commands:
         if not fail:
             print("yes: ", line)
             bla.append(line)
-            l = len(line)
-            m = l // 2
+            length = len(line)
+            m = length // 2
             solution_1 += int(line[m])
 
 

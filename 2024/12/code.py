@@ -2,11 +2,9 @@
 # Author = brauni
 # Date = 2024-12-12
 
-import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
-import copy
 puzzle = Puzzle(year=2024, day=12)
 
 

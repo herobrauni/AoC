@@ -3,7 +3,6 @@
 # Date = 2024-12-01
 
 from collections import Counter
-import re
 import os
 from aocd import submit
 from aocd.models import Puzzle

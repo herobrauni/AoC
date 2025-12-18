@@ -2,7 +2,6 @@
 # Author = brauni
 # Date = 2024-12-19
 
-import re
 import os
 from aocd import submit
 from aocd.models import Puzzle
