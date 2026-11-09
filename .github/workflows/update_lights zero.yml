@@ -1,5 +1,7 @@
 name: remote ssh command
 on: [push]
+permissions:
+  contents: read
 jobs:
   build:
     name: Build
