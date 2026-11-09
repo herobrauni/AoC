@@ -60,7 +60,7 @@ import sys
 
 html = sys.stdin.read()
 
-start_tag = '<article>'
+start_tag = '<article'
 end_tag = '</article>'
 success_tag = '</code>'
 
