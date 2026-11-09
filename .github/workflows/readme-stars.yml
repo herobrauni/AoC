@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: "15,45 5,6,7,8,*/4 * * *" # Every 4 hours
   workflow_dispatch:
+  push:
+    paths:
+      - "tools/update_readme_stars.py"
+      - ".github/workflows/readme-stars.yml"
 
 jobs:
   update-readme:
@@ -10,11 +14,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: k2bd/advent-readme-stars@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          userId: 1491396
-          sessionCookie: ${{ secrets.AOC_SESSION }}
+          python-version-file: ".python-version"
+      - name: Regenerate star tables for every year
+        env:
+          AOC_SESSION: ${{ secrets.AOC_SESSION }}
+          AOC_USER_AGENT: "aoc@brauni.dev"
+        run: python tools/update_readme_stars.py
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update README stars
+          file_pattern: README.md
