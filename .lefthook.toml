@@ -1,0 +1,11 @@
+# GitGuardian secret scan on staged changes (advent-of-code puzzle inputs,
+# session cookies, etc. must never reach the remote).
+#
+# ggshield is provided by `mise install` (see .mise.toml) and the job is
+# skipped on machines that do not have it.
+[pre-commit]
+skip = ["merge", "rebase"]
+
+[pre-commit.commands.ggshield]
+run = "ggshield secret scan pre-commit"
+skip = [{ run = "! command -v ggshield >/dev/null 2>&1" }]
