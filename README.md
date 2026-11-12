@@ -6,12 +6,12 @@
 <!--- advent_readme_stars table --->
 ## Results
 
-**271/550 ⭐** · **134/275 days**
+**273/550 ⭐** · **135/275 days**
 
 | Year | Stars | Days | Progress |
 | :--- | ---: | :---: | :--- |
 | [2015](https://adventofcode.com/2015) | 36/50 | 18/25 | `★★★★★★★★★★★★★★★★★★·······` |
-| [2016](https://adventofcode.com/2016) | 4/50 | 2/25 | `★★·······················` |
+| [2016](https://adventofcode.com/2016) | 6/50 | 3/25 | `★★★······················` |
 | [2017](https://adventofcode.com/2017) | 0/50 | 0/25 | `·························` |
 | [2018](https://adventofcode.com/2018) | 0/50 | 0/25 | `·························` |
 | [2019](https://adventofcode.com/2019) | 2/50 | 1/25 | `★························` |
@@ -21,7 +21,7 @@
 | [2023](https://adventofcode.com/2023) | 50/50 | 25/25 | `★★★★★★★★★★★★★★★★★★★★★★★★★` |
 | [2024](https://adventofcode.com/2024) | 42/50 | 21/25 | `★★★★★★★★★★★★★★★★★★★★·★···` |
 | [2025](https://adventofcode.com/2025) | 24/50 | 12/25 | `★★★★★★★★★★★★·············` |
-| **Total** | **271** | **134** | |
+| **Total** | **273** | **135** | |
 
 `★` both parts · `☆` part 1 only · `·` unsolved
 
@@ -59,13 +59,13 @@
 </details>
 
 <details>
-<summary><strong>2016</strong> — 4/50 ⭐ · 2/25 days</summary>
+<summary><strong>2016</strong> — 6/50 ⭐ · 3/25 days</summary>
 
 | Day | Part 1 | Part 2 |
 | :---: | :---: | :---: |
 | [Day 1](https://adventofcode.com/2016/day/1) | ⭐ | ⭐ |
 | [Day 2](https://adventofcode.com/2016/day/2) | ⭐ | ⭐ |
-| [Day 3](https://adventofcode.com/2016/day/3) |  |  |
+| [Day 3](https://adventofcode.com/2016/day/3) | ⭐ | ⭐ |
 | [Day 4](https://adventofcode.com/2016/day/4) |  |  |
 | [Day 5](https://adventofcode.com/2016/day/5) |  |  |
 | [Day 6](https://adventofcode.com/2016/day/6) |  |  |
