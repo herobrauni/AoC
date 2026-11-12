@@ -100,8 +100,9 @@ else:
     # Create code template
     uv run python make_code.py $day_int $year
 
-    # Open VS Code
+    # Open VS Code (full repo folder, then the two files)
     if type -q code
+        code .
         code "./$year/$day_for_folder/code.py" "./AoC_private/$year/$day_for_folder/input.txt"
     end
 

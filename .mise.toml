@@ -1,6 +1,5 @@
+# No tool pins: ggshield and lefthook come from the machine-global mise config
+# (`mise use -g lefthook@latest`, `mise use -g aqua:GitGuardian/ggshield@latest`).
+# Only wire the lefthook pre-commit hook (see .lefthook.toml) on install.
 [hooks]
 postinstall = "lefthook install"
-
-[tools]
-"aqua:GitGuardian/ggshield" = "1.56.1"
-lefthook = "2.2.2"

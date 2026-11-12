@@ -1,8 +1,9 @@
 # GitGuardian secret scan on staged changes (advent-of-code puzzle inputs,
 # session cookies, etc. must never reach the remote).
 #
-# ggshield is provided by `mise install` (see .mise.toml) and the job is
-# skipped on machines that do not have it.
+# ggshield comes from the machine-global mise config (or from this repo's
+# `mise install`), and the job is skipped on machines that do not have it.
+# The hook itself is wired by the `lefthook install` postinstall in .mise.toml.
 [pre-commit]
 skip = ["merge", "rebase"]
 
